@@ -1,7 +1,5 @@
----
-title: "GenePiper"
-output: html_document
----
+# GenePiper
+
 ---
 
 
