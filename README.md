@@ -2,7 +2,6 @@
 
 ---
 
-
 ##### GenePiper is a stand alone R shiny application for NGS data mining. It provides over 20 different analysis methods with user-friendly GUI. Recently, 6 main categories (Diversity, Descriptive, Oridination, Correlation, Clustering and Non-parametric) was included.
 
 
