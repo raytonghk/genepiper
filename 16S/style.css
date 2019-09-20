@@ -1,0 +1,163 @@
+body {
+  font-family: Arial;
+  margin: 0;
+  background: #EEF;
+  height: 100%;
+  width: 100%;
+}
+img {
+  height: 100%;
+  width: 100%;
+}
+div.busy {
+  position:absolute;
+  top: 40%;
+  left: 50%;
+  margin: auto;
+  display:none;
+  background: rgba(230, 230, 230, .8);
+  text-align: center;
+  padding-top: 20px;
+  padding-left: 30px;
+  padding-bottom: 40px;
+  padding-right: 30px;
+  border-radius: 5px;
+  z-index: 10;
+}
+/*div.desc*/
+div.desccontent {
+  display: none;
+}
+
+div.showdesc {
+  color: rgba(100, 100, 100, .3);
+  font-weight: bold;
+}
+
+div.showdesc:hover {
+  color: rgba(100, 100, 100, .7);
+}
+
+div.hidedesc {
+  color: rgba(100, 100, 100, .3);
+  font-weight: bold;
+  float: right;
+}
+
+div.hidedesc:hover {
+  color: rgba(100, 100, 100, .7);
+}
+
+/*div.ref*/
+div.refcontent {
+  display: none;
+}
+
+div.showref {
+  color: rgba(100, 100, 100, .3);
+  font-weight: bold;
+}
+
+div.showref:hover {
+  color: rgba(100, 100, 100, .7);
+}
+
+div.hideref {
+  color: rgba(100, 100, 100, .3);
+  font-weight: bold;
+  float: right;
+}
+
+div.hideref:hover {
+  color: rgba(100, 100, 100, .7);
+}
+
+div.well {
+  width: 100%;
+}
+
+.bold {
+  font-weight: bold;
+}
+.column-left {
+  display: inline-block;
+  width: 50%;
+}
+.column-right {
+  display: inline-block;
+  vertical-align: top;
+  width: 49%;
+}
+.desc-box {
+  margin: 5px;
+  background: #DDE;
+}
+.error-message {
+  color: red;
+}
+.filter-panel {
+  overflow-y: scroll;
+  max-height: 500px
+}
+.fixed-height-block {
+  overflow-y: scroll;
+  max-height: 200px;
+}
+.graphic-panel {
+  display: inline-block;
+  vertical-align: top;
+  width: 49%;
+}
+.left-column {
+  margin-top: 5px;
+  background: #DDF;
+}
+.middle-column {
+  margin-top: 5px;
+  background: #DCF;
+}
+.parameter-panel {
+  display: inline-block;
+  width: 50%;
+}
+.right-column {
+  margin-top: 5px;
+  background: #DBF;
+}
+.tooltips {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  font-weight: bold;
+}
+.tooltips .tooltiptext {
+  visibility: hidden;
+  width: 400px;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  background-color: #BBB;
+  
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -60px;
+}
+.tooltips .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 100%;
+  left: 10%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #BBB transparent transparent transparent;
+}
+.tooltips:hover .tooltiptext {
+  visibility: visible;
+}
+.warning {
+  color: red;
+}
+

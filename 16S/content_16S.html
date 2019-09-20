@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-Us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+    <style type="text/css" media="all">
+      #icon-container {
+        display: -webkit-flex;
+        display: flex;
+      }
+      #column-import {
+        flex-basis: 30%
+        display: -webkit-flex;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        background: #DDF;
+        margin-right: 10px;
+      }
+      #column-helper {
+        flex-basis: 30%
+        display: -webkit-flex;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        background: #DCF;
+        
+      }
+      #column-analysis {
+        flex: 1;
+        display: -webkit-flex;
+        display: flex;
+        flex-direction: column;
+        background: #DBF;
+        margin-right: 10px;
+      }
+      .category-row {
+        display: flex;
+        flex-direction: row;
+      }
+      .category-title {
+        flex: 0 0 200px;
+        align-items: flex-start;
+      }
+      .category-title img {
+        width: 200px;
+        height: 200px;
+        margin-left: 5px;
+      }
+      .icon-row {
+        display: -webkit-flex;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .icon {
+        position: relative;
+        display: inline;
+        margin: 5px;
+        height: 200px;
+        width: 200px;
+      }
+      .icon-top {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .icon:hover .icon-top {
+        display: none;
+      }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+      window.onload = function() {
+        parent.postMessage("content_16S_loaded", '*')
+      }
+      
+      function button_content_onclick(name) {
+        parent.postMessage(name, '*');
+      }
+    </script>
+  </head>
+  <body>
+    <div id="icon-container">
+      <div id="column-import">
+        <h2 align="center">Data</h2>
+        <div class="icon">
+          <img src="./www/button_data_import_tables_hover.png" alt="" onclick="button_content_onclick('import_tables')"/>
+          <img class="icon-top" src="./www/button_data_import_tables.png" alt=""/>
+        </div>
+        <div class="icon">
+          <img src="./www/button_data_import_phyloseq_hover.png" alt="" onclick="button_content_onclick('import_phyloseq')"/>
+          <img class="icon-top" src="./www/button_data_import_phyloseq.png" alt="" />
+        </div>
+        <div class="icon">
+          <img src="./www/button_data_filter_phyloseq_hover.png" alt="" onclick="button_content_onclick('import_filter_phyloseq')"/>
+          <img class="icon-top" src="./www/button_data_filter_phyloseq.png" alt="" />
+        </div>
+        <div class="icon">
+          <img src="./www/button_data_delete_phyloseq_hover.png" alt="" onclick="button_content_onclick('import_delete_phyloseq')"/>
+          <img class="icon-top" src="./www/button_data_delete_phyloseq.png" alt="" />
+        </div>
+      </div>
+      
+      <div id="column-analysis">
+        <h2 align="center">Analysis</h2>
+        <div class="category-row">
+          <div class="category-title">
+            <img src="./www/title_diversity.png" alt="" />
+          </div>
+          <div class="icon-row">
+            <div class="icon">
+              <img src="./www/button_analysis_alpha_diversity_hover.png" alt="" onclick="button_content_onclick('analysis_alpha_diversity')"/>
+              <img class="icon-top" src="./www/button_analysis_alpha_diversity.png" alt="" />
+            </div>
+            <div class="icon">
+              <img src="./www/button_analysis_diversity_index_curve_hover.png" alt="" onclick="button_content_onclick('analysis_diversity_index_curve')"/>
+              <img class="icon-top" src="./www/button_analysis_diversity_index_curve.png" alt="" />
+            </div>
+          </div>
+        </div>
+        
+        <div class="category-row">
+          <div class="category-title">
+            <img src="./www/title_descriptive.png" alt="" />
+          </div>
+          <div class="icon-row">
+            <div class="icon">
+              <img src="./www/button_analysis_taxonomical_bar_chart_hover.png" alt="" onclick="button_content_onclick('analysis_taxonomical_bar_chart')"/>
+              <img class="icon-top" src="./www/button_analysis_taxonomical_bar_chart.png" alt="" />
+            </div>
+            <div class="icon">
+              <img src="./www/button_analysis_taxonomical_heatmap_hover.png" alt="" onclick="button_content_onclick('analysis_taxonomical_heatmap')"/>
+              <img class="icon-top" src="./www/button_analysis_taxonomical_heatmap.png" alt="" />
+            </div>
+            <div class="icon">
+              <img src="./www/button_analysis_taxonomical_tree_hover.png" alt="" onclick="button_content_onclick('analysis_taxonomical_tree')"/>
+              <img class="icon-top" src="./www/button_analysis_taxonomical_tree.png" alt="" />
+            </div>
+            <div class="icon">
+              <img src="./www/button_analysis_taxonomical_venn_diagram_hover.png" alt="" onclick="button_content_onclick('analysis_taxonomical_venn_diagram')"/>
+              <img class="icon-top" src="./www/button_analysis_taxonomical_venn_diagram.png" alt="" />
+            </div>
+          </div>
+        </div>
+        
+        <div class = "category-row">
+          <div class = "category-title">
+            <img src="./www/title_ordination.png" alt=""/>
+          </div>
+          <div class="icon-row">
+            <div class="icon">
+              <img src="./www/button_analysis_ca_hover.png" alt="" onclick="button_content_onclick('analysis_ca')"/>
+              <img class="icon-top" src="./www/button_analysis_ca.png" alt="" />
+            </div>
+            <div class="icon">
+              <img src="./www/button_analysis_dca_hover.png" alt="" onclick="button_content_onclick('analysis_dca')"/>
+              <img class="icon-top" src="./www/button_analysis_dca.png" alt="" />
+            </div>
+            <div class="icon">
+              <img src="./www/button_analysis_pca_hover.png" alt="" onclick="button_content_onclick('analysis_pca')"/>
+              <img class="icon-top" src="./www/button_analysis_pca.png" alt="" />
+            </div>
+            <div class="icon">
+              <img src="./www/button_analysis_pcoa_hover.png" alt="" onclick="button_content_onclick('analysis_pcoa')"/>
+              <img class="icon-top" src="./www/button_analysis_pcoa.png" alt="" />
+            </div>
+            <div class="icon">
+              <img src="./www/button_analysis_nmds_hover.png" alt="" onclick="button_content_onclick('analysis_nmds')"/>
+              <img class="icon-top" src="./www/button_analysis_nmds.png" alt="" />
+            </div>
+            <div class="icon">
+              <img src="./www/button_analysis_cca_hover.png" alt="" onclick="button_content_onclick('analysis_cca')"/>
+              <img class="icon-top" src="./www/button_analysis_cca.png" alt="" />
+            </div>
+            <div class="icon">
+              <img src="./www/button_analysis_rda_hover.png" alt="" onclick="button_content_onclick('analysis_rda')"/>
+              <img class="icon-top" src="./www/button_analysis_rda.png" alt="" />
+            </div>
+            <div class="icon">
+              <img src="./www/button_analysis_ccora_hover.png" alt="" onclick="button_content_onclick('analysis_ccora')"/>
+              <img class="icon-top" src="./www/button_analysis_ccora.png" alt="" />
+            </div>
+            <div class="icon">
+              <img src="./www/button_analysis_cia_hover.png" alt="" onclick="button_content_onclick('analysis_cia')"/>
+              <img class="icon-top" src="./www/button_analysis_cia.png" alt="" />
+            </div>
+            <div class="icon">
+              <img src="./www/button_analysis_proc_hover.png" alt="" onclick="button_content_onclick('analysis_proc')"/>
+              <img class="icon-top" src="./www/button_analysis_proc.png" alt="" />
+            </div>
+            <div class="icon">
+              <img src="./www/button_analysis_prc_hover.png" alt="" onclick="button_content_onclick('analysis_prc')"/>
+              <img class="icon-top" src="./www/button_analysis_prc.png" alt="" />
+            </div>
+          </div>
+        </div>
+        
+        <div class="category-row">
+          <div class="category-title">
+            <img src="./www/title_correlation.png" alt="" />
+          </div>
+          <div class="icon-row">
+            <div class="icon">
+              <img src="./www/button_analysis_correlation_hover.png" alt="" onclick="button_content_onclick('analysis_correlation')"/>
+              <img class="icon-top" src="./www/button_analysis_correlation.png" alt="" />
+            </div>
+            <div class="icon">
+              <img src="./www/button_analysis_network_hover.png" alt="" onclick="button_content_onclick('analysis_network')"/>
+              <img class="icon-top" src="./www/button_analysis_network.png" alt="" />
+            </div>
+          </div>
+        </div>
+        
+        <div class="category-row">
+          <div class="category-title">
+            <img src="./www/title_clustering.png" alt="" />
+          </div>
+          <div class="icon-row">
+            <div class="icon">
+              <img src="./www/button_analysis_hca_hover.png" alt="" onclick="button_content_onclick('analysis_hca')"/>
+              <img class="icon-top" src="./www/button_analysis_hca.png" alt="" />
+            </div>
+            <div class="icon">
+              <img src="./www/button_analysis_kmeans_hover.png" alt="" onclick="button_content_onclick('analysis_kmeans')"/>
+              <img class="icon-top" src="./www/button_analysis_kmeans.png" alt="" />
+            </div>
+          </div>
+        </div>
+        
+        <div class="category-row">
+          <div class="category-title">
+            <img src="./www/title_non_parametric.png" alt="" />
+          </div>
+          <div class="icon-row">
+            <div class="icon">
+              <img src="./www/button_analysis_kruskal_hover.png" alt="" onclick="button_content_onclick('analysis_kruskal')"/>
+              <img class="icon-top" src="./www/button_analysis_kruskal.png" alt="" />
+            </div>
+          </div>
+          <div class="icon-row">
+            <div class="icon">
+              <img src="./www/button_analysis_friedman_hover.png" alt="" onclick="button_content_onclick('analysis_friedman')"/>
+              <img class="icon-top" src="./www/button_analysis_friedman.png" alt="" />
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div id="column-helper">
+        <h2 align="center">Helper</h2>
+        <div class="icon">
+          <img src="./www/button_helper_build_ml_tree_hover.png" alt="" onclick="button_content_onclick('helper_build_ml_tree')"/>
+          <img class="icon-top" src="./www/button_helper_build_ml_tree.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
