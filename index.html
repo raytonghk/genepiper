@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en-Us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>GenePiper</title>
+    <style type="text/css">
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial;
+        margin: 0;
+      }
+      #page_container {
+        position: relative;
+        min-height: 100vh;
+      }
+      header {
+        background-color: #DDF;
+        height: 60px;
+        padding: 5px;
+      }
+      #img_logo {
+        height: 100%;
+      }
+      nav {
+        background-color: #CCE;
+        padding: 3px;
+        min-height: 5px;
+      }
+      #nav_title_container {
+        position: absolute;
+        left: 0;
+      }
+      section {
+        display: -webkit-flex;
+        display: flex;
+      }
+      article {
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+      }
+      #iframe {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        padding-bottom: 50px;
+      }
+      footer {
+        background-color: #DDF;
+        height: 50px;
+        width: 100%;
+        padding: 5px;
+        position: fixed;
+        bottom: 0px;
+      }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+      function reset() {
+        document.getElementById('nav_title').innerHTML = "";
+        document.getElementById('iframe').src = "./content/";
+      }
+      
+      function gotoPage(page) {
+        document.getElementById('iframe').src = page;
+      }
+    
+      function receiveMessage(e) {
+        if (e.data == 'content_16S') {
+          document.getElementById('iframe').src = "./16S/content_16S.html";
+        }
+        if (e.data == 'content_16S_loaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\"gotoPage('./16S/content_16S.html')\">16S</a>";
+        }
+        if (e.data == 'import_tables') {
+          document.getElementById('iframe').src = "./16S/import_tables/";
+        }
+        if (e.data == 'importTablesLoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/import_tables/')\">Import Tables</a>";
+        }
+        if (e.data == 'import_phyloseq') {
+          document.getElementById('iframe').src = "./16S/import_phyloseq/";
+        }
+        if (e.data == 'importPhyloseqLoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/import_phyloseq/')\">Import Phyloseq</a>";
+        }
+        if (e.data == 'import_delete_phyloseq') {
+          document.getElementById('iframe').src = "./16S/import_delete_phyloseq/";
+        }
+        if (e.data == 'importDeletePhyloseqLoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/import_delete_phyloseq/')\">Delete Phyloseq</a>";
+        }
+        if (e.data == 'import_filter_phyloseq') {
+          document.getElementById('iframe').src = "./16S/import_filter_phyloseq/";
+        }
+        if (e.data == 'importFilterPhyloseqLoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/import_filter_phyloseq/')\">Filter Phyloseq</a>";
+        }
+        if (e.data == 'helper_build_ml_tree') {
+          document.getElementById('iframe').src = "./16S/helper_build_ml_tree/";
+        }
+        if (e.data == 'helperBuildMlTreeLoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/helper_build_ml_tree/')\">Build ML Tree</a>";
+        }
+        if (e.data == 'analysis_alpha_diversity') {
+          document.getElementById('iframe').src = "./16S/analysis_alpha_diversity/";
+        }
+        if (e.data == 'analysisAlphaDiversityLoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_alpha_diversity/')\">Alpha Diversity</a>";
+        }
+        if (e.data == 'analysis_diversity_index_curve') {
+          document.getElementById('iframe').src = "./16S/analysis_diversity_index_curve/";
+        }
+        if (e.data == 'analysisDiversityIndexCurveLoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_diversity_index_curve/')\">Diversity Index Curve</a>";
+        }
+        if (e.data == 'analysis_taxonomical_bar_chart') {
+          document.getElementById('iframe').src = "./16S/analysis_taxonomical_bar_chart/";
+        }
+        if (e.data == 'analysisTaxonomicalBarChartLoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_taxonomical_bar_chart/')\">Taxonomical Bar Chart</a>";
+        }
+        if (e.data == 'analysis_taxonomical_heatmap') {
+          document.getElementById('iframe').src = "./16S/analysis_taxonomical_heatmap/";
+        }
+        if (e.data == 'analysisTaxonomicalHeatmapLoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_taxonomical_heatmap/')\">Taxonomical Heatmap</a>";
+        }
+        if (e.data == 'analysis_taxonomical_tree') {
+          document.getElementById('iframe').src = "./16S/analysis_taxonomical_tree/";
+        }
+        if (e.data == 'analysisTaxonomicalTreeLoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_taxonomical_tree/')\">Taxonomical Tree</a>";
+        }
+        if (e.data == 'analysis_taxonomical_venn_diagram') {
+          document.getElementById('iframe').src = "./16S/analysis_taxonomical_venn_diagram/";
+        }
+        if (e.data == 'analysisTaxonomicalVennDiagramLoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_taxonomical_venn_diagram/')\">Taxonomical Venn Diagram</a>";
+        }
+        if (e.data == 'analysis_ca') {
+          document.getElementById('iframe').src = "./16S/analysis_ca/";
+        }
+        if (e.data == 'analysisCALoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_ca/')\">Correspondence Analysis (CA)</a>";
+        }
+        if (e.data == 'analysis_dca') {
+          document.getElementById('iframe').src = "./16S/analysis_dca/";
+        }
+        if (e.data == 'analysisDCALoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_dca/')\">Detrended Correspondence Analysis (DCA)</a>";
+        }
+        if (e.data == 'analysis_pca') {
+          document.getElementById('iframe').src = "./16S/analysis_pca/";
+        }
+        if (e.data == 'analysisPCALoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_pca/')\">Principal Component Analysis (PCA)</a>";
+        }
+        if (e.data == 'analysis_pcoa') {
+          document.getElementById('iframe').src = "./16S/analysis_pcoa/";
+        }
+        if (e.data == 'analysisPCoALoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_pcoa/')\">Principal Coordinates Analysis (PCoA)</a>";
+        }
+        if (e.data == 'analysis_nmds') {
+          document.getElementById('iframe').src = "./16S/analysis_nmds/";
+        }
+        if (e.data == 'analysisNMDSLoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_nmds/')\">Non-metric Multidimensional Scaling (NMDS)</a>";
+        }
+        if (e.data == 'analysis_hca') {
+          document.getElementById('iframe').src = "./16S/analysis_hca/";
+        }
+        if (e.data == 'analysisHCALoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_hca/')\">Hierarchical Clustering Analysis</a>";
+        }
+        if (e.data == 'analysis_kmeans') {
+          document.getElementById('iframe').src = "./16S/analysis_kmeans/";
+        }
+        if (e.data == 'analysisKmeansLoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_kmeans/')\">K-Means Clustering Analysis</a>";
+        }
+        if (e.data == 'analysis_correlation') {
+          document.getElementById('iframe').src = "./16S/analysis_correlation/";
+        }
+        if (e.data == 'analysisCorrelationLoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_correlation/')\">Correlation Analysis</a>";
+        }
+        if (e.data == 'analysis_cca') {
+          document.getElementById('iframe').src = "./16S/analysis_cca/";
+        }
+        if (e.data == 'analysisCCALoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_cca/')\">Canonical Correspondence Analysis</a>";
+        }
+        if (e.data == 'analysis_rda') {
+          document.getElementById('iframe').src = "./16S/analysis_rda/";
+        }
+        if (e.data == 'analysisRDALoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_rda/')\">Redundancy Analysis</a>";
+        }
+        if (e.data == 'analysis_ccora') {
+          document.getElementById('iframe').src = "./16S/analysis_ccora/";
+        }
+        if (e.data == 'analysisCCorALoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_ccora/')\">Canonical Correlation Analysis</a>";
+        }
+        if (e.data == 'analysis_cia') {
+          document.getElementById('iframe').src = "./16S/analysis_cia/";
+        }
+        if (e.data == 'analysisCIALoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_cia/')\">Co-Inertia Analysis</a>";
+        }
+        if (e.data == 'analysis_proc') {
+          document.getElementById('iframe').src = "./16S/analysis_procrustes/";
+        }
+        if (e.data == 'analysisProcrustesLoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_procrustes/')\">Procrustes Analysis</a>";
+        }
+        if (e.data == 'analysis_prc') {
+          document.getElementById('iframe').src = "./16S/analysis_prc/";
+        }
+        if (e.data == 'analysisPRCLoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_prc/')\">Principal Response Curve</a>";
+        }
+        if (e.data == 'analysis_network') {
+          document.getElementById('iframe').src = "./16S/analysis_network/";
+        }
+        if (e.data == 'analysisNetworkLoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_network/')\">Network Analysis</a>";
+        }
+        if (e.data == 'analysis_kruskal') {
+          document.getElementById('iframe').src = "./16S/analysis_kruskal/";
+        }
+        if (e.data == 'analysisKruskalLoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_kruskal/')\">Kruskal-Wallis Test</a>";
+        }
+        if (e.data == 'analysis_friedman') {
+          document.getElementById('iframe').src = "./16S/analysis_friedman/";
+        }
+        if (e.data == 'analysisFriedmanLoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/analysis_friedman/')\">Friedman Test</a>";
+        }
+      }
+      
+      if (window.addEventListener) {
+        window.addEventListener("message", receiveMessage, false);
+      }
+      else {
+        window.attachEvent("onmessage", receiveMessage);
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <img src="./www/logo.png" alt="" id="img_logo" onclick="reset()"/>
+    </header>
+    <nav>
+      <div id="nav_title"></div>
+    </nav>
+    <section>
+      <div id="shiny">
+        <iframe src="./content/" frameborder="0" id="iframe"></iframe>
+      </div>
+    </section>
+    <footer>
+      Created by WM Tong
+    </footer>
+  </body>
+</html>
