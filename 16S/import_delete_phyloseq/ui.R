@@ -19,7 +19,7 @@ shinyUI(
     fluidRow(
       wellPanel(
         class = "desc-box",
-        h5("Delete phyloseq is a helper function to delete the stored phyloseq.")
+        h5("Delete phyloseq is a helper function to delete the stored phyloseq dataset in GenePiper.")
       ),
       
       column(
