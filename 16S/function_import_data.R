@@ -126,7 +126,13 @@ formatPhyloseq <- function(phyloseq) {
 }
 
 formatPhyloseqOtuTable <- function(phyloseq) {
-  otu_table(phyloseq) %>%
+  if(phyloseq@otu_table@taxa_are_rows) {
+    otuTab <- otu_table(phyloseq)
+  } else {
+    otuTab <- t(otu_table(phyloseq))
+  }
+  
+ otuTab %>%
     as.data.frame() %>%
     `rownames<-`(make.names(rownames(.))) %>%
     `colnames<-`(make.names(colnames(.)))
@@ -134,6 +140,7 @@ formatPhyloseqOtuTable <- function(phyloseq) {
 
 formatPhyloseqTaxTable <- function(phyloseq) {
   tax_table(phyloseq) %>%
+    as("matrix") %>%
     as.data.frame() %>%
     rownames_to_column("OTU_ID") %>%
     formatTaxTable()
