@@ -54,7 +54,9 @@ shinyServer(
         vals$phyloseqMessage <- NULL
         tryCatch(
           {
-            vals$formatedPhyloseq <- formatPhyloseq(vals$validPhyloseq)
+            formatedPhyloseq <- formatPhyloseq(vals$validPhyloseq)
+            stopifnot(class(formatedPhyloseq) == "phyloseq")
+            vals$formatedPhyloseq <- formatedPhyloseq
           },
           error = function(e) {
             vals$phyloseqMessage <- "Format phyloseq error!"
