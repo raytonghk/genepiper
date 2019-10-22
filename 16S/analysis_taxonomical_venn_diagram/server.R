@@ -52,6 +52,17 @@ shinyServer(
     })
     
     # plotButton
+    observe({
+      req(input$groupLabel)
+      if(length(input$groupLabel) %in% 2:5) {
+        output$groupLabelMessage <- renderText(NULL)
+        enable("plotButton")
+      } else {
+        output$groupLabelMessage <- renderText(HTML("Please select 2 - 5 labels."))
+        disable("plotButton")
+      }
+    })
+    
     observeEvent(input$plotButton,
                  {
                    vals$plotMessage <- NULL
@@ -79,6 +90,7 @@ shinyServer(
     }
     
     plotListOfSample <- function(plotTable) {
+      req(length(input$groupLabel) %in% 2:5)
       plotTable %>%
         filter(Value != 0, Sample %in% input$groupLabel) %>%
         group_by(Sample) %>%
@@ -87,6 +99,7 @@ shinyServer(
     }
     
     plotListOfGroup <- function(plotTable) {
+      req(length(input$groupLabel) %in% 2:5)
       plotTable %>%
         addGroupToTable(vals$filteredPhyloseq, input$groupColumnVenn) %>%
         filter(Value != 0, !!as.name(input$groupColumnVenn) %in% input$groupLabel) %>%

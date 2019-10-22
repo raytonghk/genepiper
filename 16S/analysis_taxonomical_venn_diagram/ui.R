@@ -50,6 +50,7 @@ shinyUI(
                 uiTaxRank(),
                 selectInput("groupColumnVenn", "Group Column", NULL, width = "90%"),
                 checkboxGroupInput("groupLabel", "Please select:", NULL),
+                errorOutput("groupLabelMessage"),
                 uiPlotButton()
               ),
               
