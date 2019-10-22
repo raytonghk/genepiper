@@ -258,6 +258,11 @@ shinyServer(
       input$saveButton,
       {
         vals$saveMesssage <- NULL
+        path <- getProjectPath(input$project)
+        if(!dir.exists(path)) {
+          system(paste0("mkdir ", path, " -m 777"))
+        }
+        
         filepath <- paste0(getProjectPath(input$project), "/", input$dataLabel, "_phyloseq.rds")
         if(file.exists(filepath)) {
           vals$saveMessage <- "Data label exists!"
