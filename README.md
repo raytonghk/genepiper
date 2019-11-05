@@ -21,6 +21,10 @@
 
 Installation involves building a virtual environment, installing the operation system (linux), all the essential tools and packages, R Shiny server setup and configuration of the environment. This one-time process may take over 30 minutes.
 
+
+### To update:
+We are actively updating and improving GenePiper, users are advised to update the package time to time for new patches and newly added fucntions. To update GenePiper, click on the "Update Genepiper" button when you first launch the package in your browser.
+
 ### Sample data:
 
 Random generated sample data is provided in `sampleData` folder which contains 4 files. 
