@@ -42,6 +42,7 @@ taxDetails <- function(df) {
 formatTaxTable <- function(df) {
   colnames(df)[1] <- "OTU_ID"
   df %>%
+    mutate_at(vars(-OTU_ID), ~{map(.x, ~{ifelse(grepl("__", .x), strsplit(.x, "__")[[1]][2], .x)})}) %>%
     group_by(OTU_ID) %>%
     gather(rank, value, -OTU_ID) %>%
     filter(!is.na(value)) %>%
@@ -133,7 +134,7 @@ formatPhyloseqOtuTable <- function(phyloseq) {
   }
   
  otuTab %>%
-    as.data.frame() %>%
+    data.frame(stringsAsFactors = FALSE) %>%
     `rownames<-`(make.names(rownames(.))) %>%
     `colnames<-`(make.names(colnames(.)))
 }
@@ -141,14 +142,14 @@ formatPhyloseqOtuTable <- function(phyloseq) {
 formatPhyloseqTaxTable <- function(phyloseq) {
   tax_table(phyloseq) %>%
     as("matrix") %>%
-    as.data.frame() %>%
+    data.frame(stringsAsFactors = FALSE) %>%
     rownames_to_column("OTU_ID") %>%
     formatTaxTable()
 }
 
 formatPhyloseqSamData <- function(phyloseq) {
   sample_data(phyloseq) %>%
-    as.data.frame() %>%
+    data.frame(stringsAsFactors = FALSE) %>%
     `rownames<-`(make.names(rownames(.))) %>%
     `colnames<-`(make.names(colnames(.)))
 }
