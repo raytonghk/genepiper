@@ -87,6 +87,13 @@
           document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
           "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/import_phyloseq/')\">Import Phyloseq</a>";
         }
+        if (e.data == 'import_biom') {
+          document.getElementById('iframe').src = "./16S/import_biom/";
+        }
+        if (e.data == 'importBiomLoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/import_biom/')\">Import Biom</a>";
+        }
         if (e.data == 'import_delete_phyloseq') {
           document.getElementById('iframe').src = "./16S/import_delete_phyloseq/";
         }
