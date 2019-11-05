@@ -63,6 +63,8 @@ $script = <<BOOTSTRAP
   git clone https://github.com/raytonghk/genepiper.git /srv/shiny-server/genepiper
   sudo mv /srv/shiny-server/genepiper/* /srv/shiny-server
   sudo rm -rf /srv/shiny-server/genepiper
+
+  sudo chmod -R 777 /srv/shiny-server
   
 BOOTSTRAP
 
