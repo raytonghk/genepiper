@@ -1,6 +1,6 @@
 # GenePiper
 
-##### GenePiper is a stand alone R shiny application for NGS data mining. It provides over 20 different analysis methods with user-friendly GUI. Recently, 6 main categories (Diversity, Descriptive, Oridination, Correlation, Clustering and Non-parametric) was included.
+##### GenePiper is a standalone R shiny application for NGS data mining. It provides over 20 different analysis methods with user-friendly GUI. Recently, 6 main categories (Diversity, Descriptive, Oridination, Correlation, Clustering and Non-parametric) of analytic modules were included.
 
 
 ### Installation
@@ -14,12 +14,12 @@
 
 ### Installation:
 1. Download the [Vagrantfile](https://github.com/raytonghk/genepiper/blob/master/Vagrantfile) (press ALT + click "Raw" at top right corner)
-2. Create a working directory and copy the `Vagrantfile` to it.
-3. If `Vagrantfile` contains any extension, e.g. `.txt`, remove it.
-4. Run `vagrant up` on the working directory in terminal (Linux / Mac) or command prompt (Windows).
-5. After installation, using any web browser to host machine `http://localhost:4002`.
+2. Create a working directory and copy the `Vagrantfile` into it.
+3. If the `Vagrantfile` contains any extension, e.g. `.txt`, remove it.
+4. Run `vagrant up` in the working directory in terminal (Linux / Mac) or command prompt (Windows).
+5. After installation, use any web browser (such as Chrome, Firefox, Safari) to host machine: type in the address bar `http://localhost:4002`.
 
-Installation involves building virtual environment, installing operation system (linux), essential tools and packages, R Shiny server setup and configuration of environment. It may take over 30 minutes.
+Installation involves building a virtual environment, installing the operation system (linux), all the essential tools and packages, R Shiny server setup and configuration of the environment. This one-time process may take over 30 minutes.
 
 ### Sample data:
 
@@ -31,4 +31,4 @@ Random generated sample data is provided in `sampleData` folder which contains 4
 
 ### Tutorials:
 
-For detailed walk-through of each modules, please refer to [Wiki](https://github.com/raytonghk/genepiper/wiki/01.-Introduction) page.
+For detailed walkthrough of each modules, please refer to [Wiki](https://github.com/raytonghk/genepiper/wiki/01.-Introduction) page.
