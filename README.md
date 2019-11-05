@@ -21,10 +21,14 @@
 
 Installation involves building virtual environment, installing operation system (linux), essential tools and packages, R Shiny server setup and configuration of environment. It may take over 30 minutes.
 
-#### Sample data:
+### Sample data:
 
 Random generated sample data is provided in `sampleData` folder which contains 4 files. 
 `otuTableSample.tsv` is a tab separated OTU table file with 100 samples and 2000 taxa. 
 `taxTableSample.tsv` is a tab separated Taxonomy table file with 2000 taxa and 7 taxonomical rank.
 `samDataSample.tsv` is a tab separated sample mapping file with 100 samples and 12 feature columns.
 `treeSample.tre` is a phylogenetic tree file with 2000 taxa.
+
+### Tutorials:
+
+For detailed walk-through of each modules, please refer to [Wiki](https://github.com/raytonghk/genepiper/wiki/01.-Introduction) page.
