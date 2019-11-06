@@ -145,16 +145,12 @@ shinyServer(
     })
     
     plotAllDotWithGroup <- function(alphaTable, groupColumn) {
-      isolate(
-        {
-          plotTableWithGroup(alphaTable, groupColumn) %>%
-            ggplot(aes(x = Sample, y = Value, color = Group)) +
-            geom_point(size = input$dotSize) +
-            facet_wrap(~ Index, nrow = 1, scales = "free_y") +
-            labs(x = NULL, y = NULL) +
-            theme(axis.text.x = element_text(color = getGroupFactorColor(vals$filteredPhyloseq, groupColumn)))
-        }
-      )
+      plotTableWithGroup(alphaTable, groupColumn) %>%
+        ggplot(aes(x = Sample, y = Value, color = Group)) +
+        geom_point(size = input$dotSize) +
+        facet_wrap(~ Index, nrow = 1, scales = "free_y") +
+        labs(x = NULL, y = NULL) +
+        theme(axis.text.x = element_text(color = getGroupFactorColor(vals$filteredPhyloseq, groupColumn)))
     }
     
     observe({
@@ -164,16 +160,12 @@ shinyServer(
     })
     
     plotDotWithGroup <- function(alphaTable, groupColumn, index) {
-      isolate(
-        {
-          plotTableWithGroup(alphaTable, groupColumn) %>%
-            filter(Index == index) %>%
-            ggplot(aes(x = Sample, y = Value, color = Group)) +
-            geom_point(size = input$dotSize) +
-            labs(x = NULL, y = index) +
-            theme(axis.text.x = element_text(color = getGroupFactorColor(vals$filteredPhyloseq, groupColumn)))
-        }
-      )
+      plotTableWithGroup(alphaTable, groupColumn) %>%
+        filter(Index == index) %>%
+        ggplot(aes(x = Sample, y = Value, color = Group)) +
+        geom_point(size = input$dotSize) +
+        labs(x = NULL, y = index) +
+        theme(axis.text.x = element_text(color = getGroupFactorColor(vals$filteredPhyloseq, groupColumn)))
     }
     
     observe({
