@@ -100,7 +100,7 @@ Users may choose to compute this statistics at the ASVs/OTUs or at the phylotype
                       ),
                       conditionalPanel(
                         condition = "input.plotType != 'box'",
-                        numericInput("dotSize", "Dot Size", DOT_SIZE)
+                        numericInput("dotSize", "Dot Size", DOT_SIZE, 1)
                       )
                     ),
                     
