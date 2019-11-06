@@ -32,8 +32,17 @@ shinyUI(
         h4("Alpha diversity"),
         tags$div(
           class = "desc",
-          p("Alpha diversity (α-diversity) together with beta and gamma diversity were described by R. H. Whittaker as measurements of species diversity in an ecosystem. Alpha diversity measurements are applied to samples from a particular communities that characterize both the species numbers and their relative importances. The species number measures the diversity proper, i.e. the richness of the community in terms of the number of species defined in the sample. In 16S rRNA gene amplicon sequencing, this species number refers to the number of ASVs (amplicon sequence variants) if one used DADA2, Deblur or Unoise pipelines or the number of OTUs (operational taxonomic units) if one used the traditional clustering by sequence similarities methods. The relative importances of species refer to the species productivities or how well they compete with other species in utilizing range of resources in a given community. Productivities of species are often hard to measure and thus this importance value is often \"substituted\" by the measurement of dominance of species, see Whittaker (1972) for details. Users should note that samples of different sizes (sequencing depth or the number of sequences retrieved) are not directly comparable with their alpha-diversity measurements. 
-In this module, the most commonly reported alpha diversity measures are calculated including the Shannon, Simpson, and Fisher diversity indices and species richness estimates Chao1 and ACE using the phyloseq estimate_richness function. Users may choose to compute this statistics at the ASVs/OTUs or phylotypes level, which the ASVs/OTUs are agglomerated at the specified taxonomic rank by the phyloseq tax_glom function. 
+          p("Alpha diversity (α-diversity) together with beta and gamma diversity were described by R. H. Whittaker as measurements of species diversity in an ecosystem.
+Alpha diversity measurements are applied to samples from a particular communities that characterize both the species numbers and their relative importances. 
+The species number measures the diversity proper, i.e. the richness of the community in terms of the number of species defined in the sample. 
+In 16S rRNA gene amplicon sequencing, this species number often refers to the number of ASVs (amplicon sequence variants) if one used DADA2, Deblur or Unoise pipelines 
+or the number of OTUs (operational taxonomic units) if one used the traditional clustering by sequence similarities methods. 
+The relative importances of species refer to the species productivities or how well they compete with other species in utilizing range of resources in a given community. 
+Productivities of species are often hard to measure and thus this importance value is often \"substituted\" by the measurement of dominance of species, see Whittaker (1972) for details. 
+Users should note that samples of different sizes (sequencing depth or the number of sequences retrieved) are not directly comparable with their alpha-diversity measurements.
+
+In this module, the most commonly reported alpha diversity measures are calculated including the Shannon, Simpson, and Fisher diversity indices and species richness estimates Chao1 and ACE using the phyloseq estimate_richness function. 
+Users may choose to compute this statistics at the ASVs/OTUs or at the phylotypes level, during which the ASVs/OTUs are agglomerated at the specified taxonomic rank by the phyloseq tax_glom function. 
 "),
           a(target = "_blank", href="https://www.jstor.org/stable/1218190?seq=1#metadata_info_tab_contents", "Whittaker (1972) on Jstor")
         ),
