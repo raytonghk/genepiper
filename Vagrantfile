@@ -68,5 +68,20 @@ $script = <<BOOTSTRAP
   
 BOOTSTRAP
 
-  config.vm.provision :shell, :inline => $script
+$fix = <<BOOTSTRAP
+  sudo chmod -R 777 /srv/shiny-server
+  git clone https://github.com/raytonghk/genepiper.git /srv/shiny-server/genepiper
+  sudo cp -R /srv/shiny-server/genepiper/* /srv/shiny-server/
+  sudo rm -rf /srv/shiny-server/genepiper
+BOOTSTRAP
+  
+  #config.vm.provision :shell, :inline => $script
+  
+  config.vm.provision "setup", type: "shell" do |setup|
+    setup.inline = $script
+  end
+  
+  config.vm.provision "fix", run: "never", type: "shell" do |fix|
+    fix.inline = $fix
+  end
 end
