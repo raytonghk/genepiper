@@ -1,6 +1,6 @@
 # GenePiper
 
-##### GenePiper is a standalone R shiny application for NGS data mining. It provides over 20 different analysis methods with user-friendly GUI. Recently, 6 main categories (Diversity, Descriptive, Oridination, Correlation, Clustering and Non-parametric) of analytic modules were included.
+##### GenePiper is a standalone R shiny application for NGS data mining. It provides over 20 different analysis methods with user-friendly GUI. Recently, 6 main categories (Diversity, Descriptive, Oridination, Correlation, Clustering and Non-parametric) of analytic modules are included.
 
 
 ### Installation
@@ -27,18 +27,18 @@ We are actively updating and improving GenePiper, users are advised to update th
 
 ### Sample data:
 
-Sample data `GlobalPatterns` from `phyloseq` package was provided as RDS file `gp.rds` in `sampleData` folder. And 4 files were extracted from the sample data:
+Sample data `GlobalPatterns` from `phyloseq` package is provided in RDS format `gp.rds` in the `sampleData` folder.  Individual table files had been extracted sample data:
 * `gpOtu.tsv` is a tab separated OTU table file with 26 samples and 19216 taxa.
 * `gpTax.tsv` is a tab separated Taxonomy table file with 19216 taxa and 7 taxonomical rank.
-* `gpSamData.tsv` is a tab separated sample mapping file with 26 samples and 7 feature columns.
+* `gpSamData.tsv` is a tab separated sample data (mapping) file with 26 samples and 7 feature columns.
 * `gpTree.tre` is a phylogenetic tree file with 19216 taxa.
 
 Reference:
 
 Caporaso, J. G., et al. (2011). Global patterns of 16S rRNA diversity at a depth of millions of sequences per sample. PNAS, 108, 4516-4522. PMCID: PMC3063599
 
-Biom sample data file `rich_dense_otu_table.biom` provided.
+Biom sample data file `rich_dense_otu_table.biom` is also provided.
 
 ### Tutorials:
 
-For detailed walkthrough of each modules, please refer to [Wiki](https://github.com/raytonghk/genepiper/wiki/01.-Introduction) page.
+For detailed walkthrough of each module, please refer to our [Wiki](https://github.com/raytonghk/genepiper/wiki/01.-Introduction) page.
