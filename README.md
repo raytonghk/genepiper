@@ -37,6 +37,8 @@ Reference:
 
 Caporaso, J. G., et al. (2011). Global patterns of 16S rRNA diversity at a depth of millions of sequences per sample. PNAS, 108, 4516-4522. PMCID: PMC3063599
 
+Biom sample data file `rich_dense_otu_table.biom` provided.
+
 ### Tutorials:
 
 For detailed walkthrough of each modules, please refer to [Wiki](https://github.com/raytonghk/genepiper/wiki/01.-Introduction) page.
