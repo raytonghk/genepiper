@@ -27,11 +27,15 @@ We are actively updating and improving GenePiper, users are advised to update th
 
 ### Sample data:
 
-Random generated sample data is provided in `sampleData` folder which contains 4 files. 
-`otuTableSample.tsv` is a tab separated OTU table file with 100 samples and 2000 taxa. 
-`taxTableSample.tsv` is a tab separated Taxonomy table file with 2000 taxa and 7 taxonomical rank.
-`samDataSample.tsv` is a tab separated sample mapping file with 100 samples and 12 feature columns.
-`treeSample.tre` is a phylogenetic tree file with 2000 taxa.
+Sample data `GlobalPatterns` from `phyloseq` package was provided as RDS file `gp.rds` in `sampleData` folder. And 4 files were extracted from the sample data:
+* `gpOtu.tsv` is a tab separated OTU table file with 26 samples and 19216 taxa.
+* `gpTax.tsv` is a tab separated Taxonomy table file with 19216 taxa and 7 taxonomical rank.
+* `gpSamData.tsv` is a tab separated sample mapping file with 26 samples and 7 feature columns.
+* `gpTree.tre` is a phylogenetic tree file with 19216 taxa.
+
+Reference:
+
+Caporaso, J. G., et al. (2011). Global patterns of 16S rRNA diversity at a depth of millions of sequences per sample. PNAS, 108, 4516-4522. PMCID: PMC3063599
 
 ### Tutorials:
 
