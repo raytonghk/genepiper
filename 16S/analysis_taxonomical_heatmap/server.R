@@ -37,7 +37,7 @@ shinyServer(
     # displayWhich
     observe({
       req(input$sampleOrderBy != "Group")
-      updateSelectInput(session, "displayWhich", list("Top Abundance" = "top", "Least Abundance" = "least"))
+      updateSelectInput(session, "displayWhich", choices = list("Top Abundance" = "top", "Least Abundance" = "least"))
     })
     
     observe({
