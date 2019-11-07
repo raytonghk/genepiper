@@ -19,3 +19,13 @@ observe({
     enable("labelTaxa")
   }
 })
+
+observe({
+  req(vals$modifiedPhyloseq, input$plotTaxa3d == TRUE)
+  
+  if(ntaxa(vals$modifiedPhyloseq) > 1000) {
+    disable("labelTaxa3d")
+  } else {
+    enable("labelTaxa3d")
+  }
+})
