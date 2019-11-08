@@ -40,6 +40,8 @@ shinyServer(
                          transformCount(input$abundanceType)
                        vals$taxRank <- input$taxRank
                        vals$abundanceType <- input$abundanceType
+                       vals$displayFilter <- input$displayFilter
+                       vals$displayNumber <- input$displayNumber
                      },
                      error = function(e) {
                        vals$plotMessage <- "Error: Create plot table error."
@@ -71,13 +73,14 @@ shinyServer(
     
     observe({
       req(vals$modifiedPhyloseq, input$graphicGroupColumn == "None")
-      vals$gg <- plotBarWithoutGroup(vals$modifiedPhyloseq, vals$taxRank)
+      vals$gg <- plotBarWithoutGroup(vals$modifiedPhyloseq, vals$taxRank, vals$displayFilter, vals$displayNumber)
     })
     
-    plotBarWithoutGroup <- function(phyloseq, rank) {
+    plotBarWithoutGroup <- function(phyloseq, rank, displayFilter, displayNumber) {
       isolate(
         {
           rankPlotTable(phyloseq, rank) %>%
+            filterTaxaByAbundance(displayFilter, displayNumber, rank) %>%
             factorPlotTableRankBySum(rank) %>%
             ggplot(aes_string(x = "Sample", y = "Value", fill = rank)) +
             geom_col(color = "black") +
@@ -88,13 +91,15 @@ shinyServer(
     
     observe({
       req(vals$modifiedPhyloseq, input$graphicGroupColumn != "None")
-      vals$gg <- plotBarWithGroup(vals$modifiedPhyloseq, input$graphicGroupColumn, vals$taxRank)
+      vals$gg <- plotBarWithGroup(vals$modifiedPhyloseq, input$graphicGroupColumn, vals$taxRank, 
+                                  vals$displayFilter, vals$displayNumber)
     })
     
-    plotBarWithGroup <- function(phyloseq, groupColumn, rank) {
+    plotBarWithGroup <- function(phyloseq, groupColumn, rank, displayFilter, displayNumber) {
       isolate(
         {
           rankPlotTable(phyloseq, rank) %>%
+            filterTaxaByAbundance(displayFilter, displayNumber, rank) %>%
             addGroupToTable(phyloseq, groupColumn) %>%
             factorPlotTableRankBySum(rank) %>%
             factorPlotTableSampleByGroup(groupColumn) %>%
