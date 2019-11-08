@@ -20,7 +20,7 @@ formatSquareGgAspectRatio <- function(gg) {
     coord_fixed(diff(xlim) / diff(ylim), xlim = xlim, ylim = ylim)
 }
 
-formatSquareGg <- function(gg, format = TRUE) {
+formatSquareGg <- function(gg, format = TRUE, legend = TRUE, title = TRUE) {
   xlim <- ggplot_build(gg)$layout$panel_params[[1]]$x.range
   ylim <- ggplot_build(gg)$layout$panel_params[[1]]$y.range
   maxDiff <- max(diff(xlim), diff(ylim))
@@ -30,25 +30,29 @@ formatSquareGg <- function(gg, format = TRUE) {
     xlim <- c(mean(xlim) - maxDiff / 2, mean(xlim) + maxDiff / 2)
   }
   if(format) {
-    gg <- formatGg(gg)
+    gg <- formatGg(gg, legend = legend, title = title)
   }
   gg +
     coord_fixed(1, xlim, ylim)
 }
 
-formatGg <- function(gg) {
-  try(
-    {
-      if(input$displayLegend == FALSE) {
-        gg <- gg +
-          guides(color = FALSE, fill = FALSE)
-      }
-    }, silent = TRUE
-  )
+formatGg <- function(gg, legend = TRUE, title = TRUE) {
+  if(legend) {
+    try(
+      {
+        if(input$displayLegend == FALSE) {
+          gg <- gg +
+            guides(color = FALSE, fill = FALSE)
+        }
+      }, silent = TRUE
+    )
+  }
   
-  if(input$title != "") {
-    gg <- gg +
-      ggtitle(input$title)
+  if(title) {
+    if(input$title != "") {
+      gg <- gg +
+        ggtitle(input$title)
+    }
   }
   
   gg +

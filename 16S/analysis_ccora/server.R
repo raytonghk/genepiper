@@ -401,11 +401,11 @@ shinyServer(
       tryCatch(
         {
           vals$ggList <- switch(input$plotType,
-                  Layout = plotLayout(),
-                  Objects = plotObjects(),
-                  Variables = plotVariables(),
-                  Biplots = plotBiplots(),
-                  "Variables Overlay" = plotOverlaies())
+                                Layout = plotLayout(),
+                                Objects = plotObjects(),
+                                Variables = plotVariables(),
+                                Biplots = plotBiplots(),
+                                "Variables Overlay" = plotOverlaies())
         },
         error = function(e) {}
       )
@@ -434,7 +434,7 @@ shinyServer(
     
     plotObject <- function(table, title = NULL, color = "black") {
       plotDotSampleWithoutGroup(ggplot(), as.data.frame(table), input$plotAxis, input$labelObject, input$objectDotSize, input$objectLabelSize, color) %>%
-        formatSquareGg() +
+        formatSquareGg(legend = FALSE, title = FALSE) +
         ggtitle(title)
     }
     
@@ -444,7 +444,7 @@ shinyServer(
         geom_vline(aes(xintercept = 0)) +
         geom_hline(aes(yintercept = 0))
       plotArrowLine(gg, as.data.frame(table), input$plotAxis, TRUE, input$variableLineSize, input$variableLabelSize, color, color) %>%
-        formatGg() +
+        formatGg(legend = FALSE, title = FALSE) +
         coord_fixed(xlim = c(-1, 1), ylim = c(-1, 1)) +
         labs(x = input$plotAxis[1], y = input$plotAxis[2]) +
         ggtitle(title)
@@ -454,7 +454,7 @@ shinyServer(
       variableTable <- fitCoordinate(as.data.frame(variableTable), as.data.frame(objectTable), input$plotAxis)
       plotArrowLine(ggplot(), as.data.frame(variableTable), input$plotAxis, TRUE, input$variableLineSize, input$variableLabelSize, color, color) %>%
         plotDotSampleWithoutGroup(as.data.frame(objectTable), input$plotAxis, input$labelObject, input$objectDotSize, input$objectLabelSize, color) %>%
-        formatSquareGg() +
+        formatSquareGg(legend = FALSE, title = FALSE) +
         ggtitle(title)
     }
     
@@ -465,7 +465,7 @@ shinyServer(
         geom_hline(aes(yintercept = 0))
       plotArrowLine(gg, as.data.frame(baseTable), input$plotAxis, TRUE, input$variableLineSize, input$variableLabelSize, baseColor, baseColor) %>%
         plotArrowLine(as.data.frame(overlayTable), input$plotAxis, TRUE, input$variableLineSize, input$variableLabelSize, overlayColor, overlayColor) %>%
-        formatGg() +
+        formatGg(legend = FALSE, title = FALSE) +
         coord_fixed(xlim = c(-1, 1), ylim = c(-1, 1)) +
         labs(x = input$plotAxis[1], y = input$plotAxis[2]) +
         ggtitle(title)
