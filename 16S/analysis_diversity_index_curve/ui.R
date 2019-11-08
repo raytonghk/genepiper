@@ -32,17 +32,30 @@ shinyUI(
         h4("Diversity index curve"),
         tags$div(
           class = "desc",
-          p("A diversity index is a quantitative measure that reflects how many different types (such as species) there are in a dataset (a community), and simultaneously takes into account how evenly the basic entities (such as individuals) are distributed among those types.
-            When diversity indices are used in ecology, the types of interest are usually species, but they can also be other categories, such as genera, families, functional types or haplotypes. The entities of interest are usually individual plants or animals, and the measure of abundance can be, for example, number of individuals, biomass or coverage. In demography, the entities of interest can be people, and the types of interest various demographic groups. In information science, the entities can be characters and the types the different letters of the alphabet. The most commonly used diversity indices are simple transformations of the effective number of types (also known as 'true diversity'), but each diversity index can also be interpreted in its own right as a measure corresponding to some real phenomenon (but a different one for each diversity index).
-            Many indices only account for categorical diversity between subjects or entities. Such indices however do not account for the total variation (diversity) that can be held between subjects or entities which occurs only when both categorical and qualitative diversity are calculated."),
-          a(target = "_blank", href = "https://en.wikipedia.org/wiki/Diversity_index", "From Wikipedia")
+          p("Rarefaction is a resampling framework that selects, at random, 1, 2, ..., n units (generally without replacement) until all units in the sample have been accumulated. For four decades (Heck et al. 1983), biologists (and others) have used rarefaction to equalize the information content of individual-based abundance samples. Since the effects of differences in sample size on diversity statistics for two or more samples can usually be substantially reduced by comparing at the same level of species accumulation.
+
+In this module, user may create rarefaction curves based on one of the following meaures: Richness, which refers to the number of ASVs/OTUs detected in the sample; the alpha-diversity measures of the Shannon Index and the Inverse Simpson index and the Good's coverage estimation.  
+Rarefaction curves are often plotted at the ASVs/OTUs level to assess the sampling effort as the species richness tends to reach a clear asymptote at sufficient sampling depth. Users may as well select to plot these curves at any taxonomic rank if the interest is to compare the phylotypes. 
+"),
+
+          a(target = "_blank", href = "http://viceroy.eeb.uconn.edu/estimates/EstimateSPages/EstSUsersGuide/EstimateSUsersGuide.htm#Introduction", "Adopted from EstimateS by Robert K. Colwell")
+
           ),
+
         tags$div(
+
           class = "ref",
+h5("Colwell, R. K. (2013). EstimateS: Statistical estimation of species richness and shared species from samples. Version 9. User's Guide and application published at: http://purl.oclc.org/estimates."),
+h5("Chao A, Gotelli NJ, Hsieh TC, Sander EL, Ma KH, Colwell RK, Ellison AM. (2014) Rarefaction and extrapolation with Hill numbers: a framework for sampling and estimation in species diversity studies. Ecological monographs. 84(1):45-67."),
+h5("Chao A, Jost L. (2012) Coverage‐based rarefaction and extrapolation: standardizing samples by completeness rather than size. Ecology. 93(12):2533-47."),
+
           h5("Heck, K.L., van Belle, G. & Simberloff, D. (1975). Explicit calculation of the rarefaction diversity measurement and the determination of sufficient sample size. Ecology 56, 1459--1461."),
           h5("Hurlbert, S.H. (1971). The nonconcept of species diversity: a critique and alternative parameters. Ecology 52, 577--586.")
+
         )
+
       ),
+
       
       column(
         width = 4,
@@ -93,39 +106,3 @@ shinyUI(
     )
   )
 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
