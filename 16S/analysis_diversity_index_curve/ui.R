@@ -32,7 +32,7 @@ shinyUI(
         h4("Diversity index curve"),
         tags$div(
           class = "desc",
-          p("Rarefaction is a resampling framework that selects, at random, 1, 2, ..., n units (generally without replacement) until all units in the sample have been accumulated. For four decades (Heck et al. 1983), biologists (and others) have used rarefaction to equalize the information content of individual-based abundance samples. Since the effects of differences in sample size on diversity statistics for two or more samples can usually be substantially reduced by comparing at the same level of species accumulation.
+          p("Rarefaction is a resampling framework that selects, at random, 1, 2, ..., n units (generally without replacement) until all units in the sample have been accumulated. For four decades (Heck et al. 1975), biologists (and others) have used rarefaction to equalize the information content of individual-based abundance samples. Since the effects of differences in sample size on diversity statistics for two or more samples can usually be substantially reduced by comparing at the same level of species accumulation.
 
 In this module, user may create rarefaction curves based on one of the following meaures: Richness, which refers to the number of ASVs/OTUs detected in the sample; the alpha-diversity measures of the Shannon Index and the Inverse Simpson index and the Good's coverage estimation.  
 Rarefaction curves are often plotted at the ASVs/OTUs level to assess the sampling effort as the species richness tends to reach a clear asymptote at sufficient sampling depth. Users may as well select to plot these curves at any taxonomic rank if the interest is to compare the phylotypes. 
