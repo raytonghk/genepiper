@@ -101,7 +101,28 @@ uiTaxRank <- function(choices = NULL, width = "90%", id = NULL) {
   selectInput(paste0("taxRank", id), "Taxonomic Rank For Agglomeration", choices, width = width)
 }
 
-
+uiDisplayFilter <- function(id = NULL, choices = list("Top Abundance" = "top", "All" = "all"), displayNumber = 10) {
+  tags$div(
+    tags$div(
+      class = "column-left",
+      style = "width: auto; margin-right: 2%",
+      h5("Display:", style = "font-weight: bold;")
+    ),
+    tags$div(
+      class = "column-right",
+      style = "width: 30%",
+      selectInput(paste0("displayFilter", id), NULL, choices)
+    ),
+    tags$div(
+      class = "column-right",
+      style = "width: 30%",
+      conditionalPanel(
+        condition = paste0("input.displayFilter", id, " != 'all'"),
+        numericInput(paste0("displayNumber", id), NULL, displayNumber)
+      )
+    )
+  )
+}
 
 
 
