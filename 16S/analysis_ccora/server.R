@@ -398,12 +398,17 @@ shinyServer(
     observe({
       vals$ggList <- NULL
       req(vals$ccora, input$plotType, length(input$plotAxis) == 2)
-      vals$ggList <- switch(input$plotType,
-                        Layout = plotLayout(),
-                        Objects = plotObjects(),
-                        Variables = plotVariables(),
-                        Biplots = plotBiplots(),
-                        "Variables Overlay" = plotOverlaies())
+      tryCatch(
+        {
+          vals$ggList <- switch(input$plotType,
+                  Layout = plotLayout(),
+                  Objects = plotObjects(),
+                  Variables = plotVariables(),
+                  Biplots = plotBiplots(),
+                  "Variables Overlay" = plotOverlaies())
+        },
+        error = function(e) {}
+      )
     })
     
     plotLayout <- function() {
