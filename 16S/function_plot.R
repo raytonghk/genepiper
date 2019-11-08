@@ -234,7 +234,18 @@ factorColumnBySum <- function(table, factorColumn, valueColumn) {
     select(-sum)
 }
   
-  
+filterTaxaByAbundance <- function(table, displayFilter, displayNumber, rank) {
+  if(displayFilter == "top") {
+    table <- table %>%
+      group_by(!!sym(rank)) %>%
+      mutate(sum = sum(Value)) %>%
+      ungroup() %>%
+      mutate(rank = dense_rank(desc(sum))) %>%
+      filter(rank <= displayNumber) %>%
+      select(-sum, -rank)
+  }
+  table
+}
   
   
   
