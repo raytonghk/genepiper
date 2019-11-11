@@ -124,6 +124,22 @@ uiDisplayFilter <- function(id = NULL, choices = list("Top Abundance" = "top", "
   )
 }
 
+uiPrevalenceFilter <- function(id = NULL, prevalence = 0) {
+  tags$div(
+    tags$div(
+      class = "column-left",
+      style = "width: auto; margin-right: 2%",
+      h5("Prevalence (%):", style = "font-weight: bold;")
+    ),
+    tags$div(
+      class = "column-right",
+      style = "width: 30%",
+      numericInput(paste0("prevalence", id), NULL, prevalence, 0, 100, 10)
+    )
+  )
+}
+
+
 
 
 
