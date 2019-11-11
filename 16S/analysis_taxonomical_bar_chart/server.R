@@ -40,6 +40,7 @@ shinyServer(
                          transformCount(input$abundanceType)
                        vals$taxRank <- input$taxRank
                        vals$abundanceType <- input$abundanceType
+                       vals$prevalence <- input$prevalence
                        vals$displayFilter <- input$displayFilter
                        vals$displayNumber <- input$displayNumber
                      },
@@ -73,13 +74,14 @@ shinyServer(
     
     observe({
       req(vals$modifiedPhyloseq, input$graphicGroupColumn == "None")
-      vals$gg <- plotBarWithoutGroup(vals$modifiedPhyloseq, vals$taxRank, vals$displayFilter, vals$displayNumber)
+      vals$gg <- plotBarWithoutGroup(vals$modifiedPhyloseq, vals$taxRank, vals$prevalence, vals$displayFilter, vals$displayNumber)
     })
     
-    plotBarWithoutGroup <- function(phyloseq, rank, displayFilter, displayNumber) {
+    plotBarWithoutGroup <- function(phyloseq, rank, prevalence, displayFilter, displayNumber) {
       isolate(
         {
           rankPlotTable(phyloseq, rank) %>%
+            filterTaxaByPrevalence(prevalence, rank) %>%
             filterTaxaByAbundance(displayFilter, displayNumber, rank) %>%
             factorPlotTableRankBySum(rank) %>%
             ggplot(aes_string(x = "Sample", y = "Value", fill = rank)) +
@@ -92,13 +94,14 @@ shinyServer(
     observe({
       req(vals$modifiedPhyloseq, input$graphicGroupColumn != "None")
       vals$gg <- plotBarWithGroup(vals$modifiedPhyloseq, input$graphicGroupColumn, vals$taxRank, 
-                                  vals$displayFilter, vals$displayNumber)
+                                  vals$prevalence, vals$displayFilter, vals$displayNumber)
     })
     
-    plotBarWithGroup <- function(phyloseq, groupColumn, rank, displayFilter, displayNumber) {
+    plotBarWithGroup <- function(phyloseq, groupColumn, rank, prevalence, displayFilter, displayNumber) {
       isolate(
         {
           rankPlotTable(phyloseq, rank) %>%
+            filterTaxaByPrevalence(prevalence, rank) %>%
             filterTaxaByAbundance(displayFilter, displayNumber, rank) %>%
             addGroupToTable(phyloseq, groupColumn) %>%
             factorPlotTableRankBySum(rank) %>%
