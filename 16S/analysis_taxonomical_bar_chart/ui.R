@@ -57,6 +57,7 @@ shinyUI(
                 h4("Parameters:"),
                 uiTaxRank(),
                 uiAbundanceType(),
+                uiPrevalenceFilter(),
                 uiDisplayFilter(),
                 uiPlotButton()
               ),
