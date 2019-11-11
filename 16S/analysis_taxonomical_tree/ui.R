@@ -52,10 +52,14 @@ shinyUI(
                 class = "parameter-panel",
                 h4("Parameters:"),
                 uiTaxRank(),
+                uiPrevalenceFilter(),
+                uiDisplayFilter(),
                 checkboxInput("displayTipLabel", "Display Tip Labels?", FALSE),
+                checkboxInput("displayNodeLabel", "Display Node Labels?", FALSE),
                 selectInput("columnForColor", "Column For Color", NULL, width = "90%"),
                 selectInput("columnForShape", "Column For Shape", NULL, width = "90%"),
                 selectInput("columnForSize", "Column For Size", NULL, width = "90%"),
+                numericInput("plotHeight", "Plot Height", 25, 0, width = "90%"),
                 conditionalPanel(
                   condition = "input.columnForSize == \'Abundance\'",
                   selectInput("abundanceType", "Display Abundance As", c("Raw Count", "Rarefied Count", "Relative Abundance"), width = "90%")

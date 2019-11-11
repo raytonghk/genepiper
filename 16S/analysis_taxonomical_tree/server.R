@@ -56,7 +56,10 @@ shinyServer(
                    tryCatch(
                      {
                        req(vals$filteredPhyloseq, input$taxRank)
-                       phyloseq <- agglomerateTaxa(vals$filteredPhyloseq, input$taxRank)
+                       phyloseq <- agglomerateTaxa(vals$filteredPhyloseq, input$taxRank) %>%
+                         filterPhyloseqTaxaByPrevalence(input$prevalence, input$taxRank) %>%
+                         filterPhyloseqTaxaByAbundance(input$displayFilter, input$displayNumber, input$taxRank)
+                       str(phyloseq)
                        vals$tree <- plotTree(phyloseq)
                        vals$treeHeight <- treeHeight(phyloseq)
                      }
@@ -66,7 +69,7 @@ shinyServer(
     
     plotTree <- function(phyloseq) {
       plot_tree(phyloseq, color = colorColumn(), shape = shapeColumn(),
-                size = sizeColumn(), label.tips = tipLabelColumn(), text.size = TIP_LABEL_SIZE
+                size = sizeColumn(), label.tips = tipLabelColumn(), text.size = TIP_LABEL_SIZE, nodelabf = nodeLabel()
       )
     }
     
@@ -86,8 +89,12 @@ shinyServer(
       switch((input$displayTipLabel) + 1, NULL, input$taxRank)
     }
     
+    nodeLabel <- function() {
+      switch((input$displayNodeLabel) + 1, nodeplotblank, NULL)
+    }
+    
     treeHeight <- function(phyloseq) {
-      length(phy_tree(phyloseq)$tip.label) * 15
+      length(phy_tree(phyloseq)$tip.label) * input$plotHeight
     }
     
     output$plotMessage <- renderText(HTML(vals$plotMessage))

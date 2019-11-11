@@ -37,6 +37,55 @@ formatTableWithTaxRank <- function(tbl, phyloseq, taxRank) {
   tbl
 }
 
+filterTaxaByAbundance <- function(longTable, displayFilter, displayNumber, rank) {
+  if(displayFilter == "top") {
+    longTable <- longTable %>%
+      filter(!!sym(rank) %in% getTaxaByAbundance(longTable, displayNumber, rank))
+  }
+  longTable
+}
+
+getTaxaByAbundance <- function(longTable, displayNumber, rank) {
+  longTable %>%
+    group_by(!!sym(rank)) %>%
+    mutate(sum = sum(Value)) %>%
+    ungroup() %>%
+    mutate(rank = dense_rank(desc(sum))) %>%
+    filter(rank <= displayNumber) %>%
+    .[[rank]] %>%
+    unique()
+}
+
+filterPhyloseqTaxaByAbundance <- function(ps, displayFilter, displayNumber, rank) {
+  if(displayFilter == "top") {
+    ps <- rankPlotTable(ps, rank) %>%
+      getTaxaByAbundance(displayNumber, rank) %>%
+      prune_taxa(ps)
+  }
+  ps
+}
+
+filterTaxaByPrevalence <- function(longTable, prevalence, rank) {
+  longTable %>%
+    filter(!!sym(rank) %in% getTaxaByPrevalence(longTable, prevalence, rank))
+}
+
+getTaxaByPrevalence <- function(longTable, prevalence, rank) {
+  longTable %>%
+    group_by(!!sym(rank)) %>%
+    mutate(preval = (sum(Value > 0) / length(Value)) * 100) %>%
+    ungroup() %>%
+    filter(preval >= prevalence) %>%
+    .[[rank]] %>%
+    unique()
+}
+
+filterPhyloseqTaxaByPrevalence <- function(ps, prevalence, rank) {
+  rankPlotTable(ps, rank) %>%
+    getTaxaByPrevalence(prevalence, rank) %>%
+    prune_taxa(ps)
+}
+
 getGroupFactorColor <- function(phyloseq, groupColumn, order = TRUE) {
   groupFactor <- groupFactor(phyloseq, groupColumn, order)
   scales::hue_pal()(nlevels(groupFactor))[groupFactor]

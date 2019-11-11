@@ -234,28 +234,6 @@ factorColumnBySum <- function(table, factorColumn, valueColumn) {
     select(-sum)
 }
   
-filterTaxaByAbundance <- function(longTable, displayFilter, displayNumber, rank) {
-  if(displayFilter == "top") {
-    longTable <- longTable %>%
-      group_by(!!sym(rank)) %>%
-      mutate(sum = sum(Value)) %>%
-      ungroup() %>%
-      mutate(rank = dense_rank(desc(sum))) %>%
-      filter(rank <= displayNumber) %>%
-      select(-sum, -rank)
-  }
-  longTable
-}
-
-filterTaxaByPrevalence <- function(longTable, prevalence, rank) {
-  longTable %>%
-    group_by(!!sym(rank)) %>%
-    mutate(preval = (sum(Value > 0) / length(Value)) * 100) %>%
-    ungroup() %>%
-    filter(preval >= prevalence) %>%
-    select(-preval)
-}
-  
   
   
   
