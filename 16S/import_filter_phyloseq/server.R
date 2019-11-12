@@ -32,7 +32,7 @@ shinyServer(
     observe(
       {
         disable("saveButton")
-        req(vals$filteredPhyloseq, input$dataLabelToSave)
+        req(vals$moduleFilteredPhyloseq, input$dataLabelToSave)
         enable("saveButton")
       }
     )
@@ -45,7 +45,7 @@ shinyServer(
         if(file.exists(filepath)) {
           vals$saveMessage <- "Data label exists!"
         } else {
-          saveRDS(vals$filteredPhyloseq, filepath)
+          saveRDS(vals$moduleFilteredPhyloseq, filepath)
           vals$saveMessage <- "Saved."
           disable("saveButton")
         }
@@ -58,14 +58,14 @@ shinyServer(
     observe(
       {
         disable("downloadButton")
-        req(vals$filteredPhyloseq)
+        req(vals$moduleFilteredPhyloseq)
         enable("downloadButton")
       }
     )
     
     output$downloadPhyloseqButton <- downloadHandler("phyloseq.rds",
                                                      function(file) {
-                                                       saveRDS(vals$filteredPhyloseq, file)
+                                                       saveRDS(vals$moduleFilteredPhyloseq, file)
                                                      }
     )
   }

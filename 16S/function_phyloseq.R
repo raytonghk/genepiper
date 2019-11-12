@@ -45,21 +45,34 @@ filterTaxaByAbundance <- function(longTable, displayFilter, displayNumber, rank)
   longTable
 }
 
-getTaxaByAbundance <- function(longTable, displayNumber, rank) {
-  longTable %>%
+getTaxaByAbundance <- function(longTable, displayNumber, rank, by = "rank") {
+  longTable <- longTable %>%
     group_by(!!sym(rank)) %>%
     mutate(sum = sum(Value)) %>%
     ungroup() %>%
-    mutate(rank = dense_rank(desc(sum))) %>%
-    filter(rank <= displayNumber) %>%
-    .[[rank]] %>%
-    unique()
+    mutate(rank = dense_rank(desc(sum)))
+  
+  if(by == "rank") {
+    longTable %>%
+      filter(rank <= displayNumber) %>%
+      .[[rank]] %>%
+      unique()
+  } else if (by == "abundance") {
+    longTable %>%
+      filter(sum >= displayNumber) %>%
+      .[[rank]] %>%
+      unique()
+  }
 }
 
-filterPhyloseqTaxaByAbundance <- function(ps, displayFilter, displayNumber, rank) {
+filterPhyloseqTaxaByAbundance <- function(ps, displayFilter, displayNumber) {
   if(displayFilter == "top") {
-    ps <- rankPlotTable(ps, rank) %>%
-      getTaxaByAbundance(displayNumber, rank) %>%
+    ps <- rankPlotTable(ps, "OTU") %>%
+      getTaxaByAbundance(displayNumber, "OTU") %>%
+      prune_taxa(ps)
+  } else if(displayFilter == "abundance") {
+    ps <- rankPlotTable(ps, "OTU") %>%
+      getTaxaByAbundance(displayNumber, "OTU", "abundance") %>%
       prune_taxa(ps)
   }
   ps
@@ -80,9 +93,9 @@ getTaxaByPrevalence <- function(longTable, prevalence, rank) {
     unique()
 }
 
-filterPhyloseqTaxaByPrevalence <- function(ps, prevalence, rank) {
-  rankPlotTable(ps, rank) %>%
-    getTaxaByPrevalence(prevalence, rank) %>%
+filterPhyloseqTaxaByPrevalence <- function(ps, prevalence) {
+  rankPlotTable(ps, "OTU") %>%
+    getTaxaByPrevalence(prevalence, "OTU") %>%
     prune_taxa(ps)
 }
 

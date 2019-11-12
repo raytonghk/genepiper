@@ -4,6 +4,7 @@ library(bsplus)
 source("../style.R")
 source("../ui_additional.R")
 source("../ui_panel_load_data.R")
+source("../ui_panel_filter.R")
 
 shinyUI(
   fluidPage(
@@ -29,34 +30,35 @@ shinyUI(
       
       column(
         width = 4,
-        wellPanel(
-          class = "middle-column",
-          style = "overflow-y: scroll; max-height: 1000px",
-          h4("Filter"),
-          h5("Sample:"),
-          textInput("filterSampleText", "Command Line", placeholder = "e.g. Blood == \'A\'") %>%
-            shinyInput_label_embed(
-              shiny_iconlink() %>%
-                bs_embed_popover(title = "Filter Expression",
-                                 placement = "left",
-                                 html = "true",
-                                 content = "Expression should use symbol of column name and return a vector of logical.")
-            ),
-          h5("- OR -"),
-          selectInput("filterSampleColumn", "Filter By Column", NULL),
-          conditionalPanel(
-            condition = "output.filterColumnType == \'numeric\'",
-            selectInput("filterSampleOperator", NULL, choices = c("==", ">", ">=", "<", "<=")),
-            numericInput("filterSampleNumeric", NULL, 0)
-          ),
-          conditionalPanel(
-            condition = "output.filterColumnType == \'character\'",
-            checkboxGroupInput("filterSampleCheckbox", "Please Select", NULL)
-          ),
-          actionButton("filterButton", "Filter"),
-          errorOutput("filterSampleMessage"),
-          verbatimTextOutput("filteredPhyloseqDetails")
-        )
+        uiPanelFilterModule("middle-column")
+        # wellPanel(
+        #   class = "middle-column",
+        #   style = "overflow-y: scroll; max-height: 1000px",
+        #   h4("Filter"),
+        #   h5("Sample:"),
+        #   textInput("filterSampleText", "Command Line", placeholder = "e.g. Blood == \'A\'") %>%
+        #     shinyInput_label_embed(
+        #       shiny_iconlink() %>%
+        #         bs_embed_popover(title = "Filter Expression",
+        #                          placement = "left",
+        #                          html = "true",
+        #                          content = "Expression should use symbol of column name and return a vector of logical.")
+        #     ),
+        #   h5("- OR -"),
+        #   selectInput("filterSampleColumn", "Filter By Column", NULL),
+        #   conditionalPanel(
+        #     condition = "output.filterColumnType == \'numeric\'",
+        #     selectInput("filterSampleOperator", NULL, choices = c("==", ">", ">=", "<", "<=")),
+        #     numericInput("filterSampleNumeric", NULL, 0)
+        #   ),
+        #   conditionalPanel(
+        #     condition = "output.filterColumnType == \'character\'",
+        #     checkboxGroupInput("filterSampleCheckbox", "Please Select", NULL)
+        #   ),
+        #   actionButton("filterButton", "Filter"),
+        #   errorOutput("filterSampleMessage"),
+        #   verbatimTextOutput("filteredPhyloseqDetails")
+        # )
       ),
       
       column(

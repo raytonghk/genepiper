@@ -27,3 +27,36 @@ uiPanelFilter<- function() {
     verbatimTextOutput("filteredPhyloseqDetails")
   )
 }
+
+uiPanelFilterModule <- function(classId) {
+  wellPanel(
+    class = classId,
+    h4("Filter"),
+    tags$div(
+      id = "filterPanelFooter",
+      tags$div(
+        class = "column-left",
+        style = "width: 45%",
+        actionButton("addFilter", "+")
+      ),
+      tags$div(
+        class = "column-right",
+        actionButton("filterModuleButton", "Filter")
+      )
+    ),
+    verbatimTextOutput("moduleFilteredPhyloseqDetails")
+  )
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+}
