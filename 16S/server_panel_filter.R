@@ -130,9 +130,10 @@ observeUpdateFilterSampleCheckbox <- function(id) {
           input[[paste0("filterSampleColumn", id)]] != "Please Select",
           variableType(vals$phyloseq, input[[paste0("filterSampleColumn", id)]]) == "character"
       )
+      choices <- unique(as.character(get_variable(vals$phyloseq, input[[paste0("filterSampleColumn", id)]])))
       updateCheckboxGroupInput(session, paste0("filterSampleCheckbox", id),
-                               choices = unique(get_variable(vals$phyloseq, input[[paste0("filterSampleColumn", id)]])),
-                               selected = unique(get_variable(vals$phyloseq, input[[paste0("filterSampleColumn", id)]])))
+                               choices = choices,
+                               selected = choices)
     }
   )
 }
@@ -254,7 +255,7 @@ filterSampleByColumnConditionalPanel <- function(id) {
       numericInput(paste("filterSampleNumeric", id), NULL, 0)
     ),
     conditionalPanel(
-      condition = paste0("output.filterSampleColumnType", id, "=='character'"),
+      condition = paste0("output.filterSampleColumnType", id, "=='character' | output.filterSampleColumnType", id, "=='factor'"),
       checkboxGroupInput(paste0("filterSampleCheckbox", id), "Please Select", NULL)
     ),
     errorOutput(paste0("filterSampleMessage", id))
