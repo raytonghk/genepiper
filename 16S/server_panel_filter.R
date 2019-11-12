@@ -112,7 +112,7 @@ observeEvent(
 )
 
 observeFilterColumn <- function(id) {
-  output[[paste0("filterSampleColumnType", id)]] <- reactive("character")
+  output[[paste0("filterSampleColumnType", id)]] <- reactive("None")
   outputOptions(output, paste0("filterSampleColumnType", id), suspendWhenHidden = FALSE)
   
   observe(
