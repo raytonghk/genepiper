@@ -108,7 +108,6 @@ observeEvent(
     observeUpdateFilterSampleCheckbox(filterNum)
     observeUpdateFilterTaxaCheckbox(filterNum)
     observeRemoveFilterButton(filterNum)
-    output[[paste0("filterSampleColumnType", filterNum)]] <- reactive("numeric")
   }
 )
 
