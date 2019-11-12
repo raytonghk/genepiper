@@ -104,6 +104,8 @@ observeEvent(
     filterNum <- input$addFilter
     insertUI("#filterPanelFooter", "beforeBegin", uiFilterModulePanel(filterNum))
     vals$filterStack <- c(vals$filterStack, filterNum)
+    output[[paste0("filterSampleColumnType", filterNum)]] <- reactive("None")
+    outputOptions(output, paste0("filterSampleColumnType", filterNum), suspendWhenHidden = FALSE)
     observeFilterColumn(filterNum)
     observeUpdateFilterSampleCheckbox(filterNum)
     observeUpdateFilterTaxaCheckbox(filterNum)
@@ -112,9 +114,6 @@ observeEvent(
 )
 
 observeFilterColumn <- function(id) {
-  output[[paste0("filterSampleColumnType", id)]] <- reactive("None")
-  outputOptions(output, paste0("filterSampleColumnType", id), suspendWhenHidden = FALSE)
-  
   observe(
     {
       req(vals$phyloseq, input[[paste0("filterSampleColumn", id)]], input[[paste0("filterSampleColumn", id)]] != "Please Select")
