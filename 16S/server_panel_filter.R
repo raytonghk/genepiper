@@ -130,7 +130,7 @@ observeUpdateFilterSampleCheckbox <- function(id) {
           input[[paste0("filterSampleColumn", id)]] != "Please Select",
           variableType(vals$phyloseq, input[[paste0("filterSampleColumn", id)]]) == "character"
       )
-      choices <- unique(as.character(get_variable(vals$phyloseq, input[[paste0("filterSampleColumn", id)]])))
+      choices <- unique(get_variable(vals$phyloseq, input[[paste0("filterSampleColumn", id)]]))
       updateCheckboxGroupInput(session, paste0("filterSampleCheckbox", id),
                                choices = choices,
                                selected = choices)
