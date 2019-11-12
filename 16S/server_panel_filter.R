@@ -255,7 +255,7 @@ filterSampleByColumnConditionalPanel <- function(id) {
       numericInput(paste("filterSampleNumeric", id), NULL, 0)
     ),
     conditionalPanel(
-      condition = paste0("output.filterSampleColumnType", id, "=='character' | output.filterSampleColumnType", id, "=='factor'"),
+      condition = paste0("output.filterSampleColumnType", id, "=='character'"),
       checkboxGroupInput(paste0("filterSampleCheckbox", id), "Please Select", NULL)
     ),
     errorOutput(paste0("filterSampleMessage", id))
