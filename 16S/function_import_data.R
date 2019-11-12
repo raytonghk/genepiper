@@ -150,6 +150,9 @@ formatPhyloseqTaxTable <- function(phyloseq) {
 formatPhyloseqSamData <- function(phyloseq) {
   sample_data(phyloseq) %>%
     data.frame(stringsAsFactors = FALSE) %>%
+    rownames_to_column() %>%
+    mutate_if(is.factor, as.character) %>%
+    column_to_rownames("rowname") %>%
     `rownames<-`(make.names(rownames(.))) %>%
     `colnames<-`(make.names(colnames(.)))
 }
