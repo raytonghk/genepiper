@@ -152,8 +152,11 @@ shinyServer(
           {
             tryCatch(
               {
-                vals$tree <- phangorn::midpoint(read_tree(input$treeFilePath$datapath)) %>%
-                  formatTree()
+                tree <- read_tree(input$treeFilePath$datapath)
+                if(!ape::is.rooted(tree)) {
+                  tree <- phangorn::midpoint(tree)
+                }
+                vals$tree <- formatTree(tree)
               },
               error = function(e) {
                 vals$treeFilePathMessage <- "Import file error!"
