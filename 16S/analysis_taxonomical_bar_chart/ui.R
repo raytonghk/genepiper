@@ -31,7 +31,7 @@ shinyUI(
         h4("Taxonomical Bar Chart"),
         tags$div(
           class = "desc",
-          p("This module provides options to plot a stacked bar-chart showing the composition of microbial communities at a specified taxonomic rank.This is commonly done at a higher taxonomic rank to have an overview of the microbiome in the cohort."),
+          p("This module provides options to plot a stacked bar-chart showing the composition of microbial communities at a specified taxonomic rank.This is commonly done at a higher taxonomic rank to have an overview of the microbiome in the cohort.")
           ),
         
         tags$div(
