@@ -30,6 +30,11 @@ shinyUI(
         class = "desc-box",
         h4("Taxonomical Bar Chart"),
         tags$div(
+          class = "desc",
+          p("This module provides options to plot a stacked bar-chart showing the composition of microbial communities at a specified taxonomic rank.
+This is commonly done at a higher taxonomic rank to have an overview of the microbiome in the cohort."),
+        
+        tags$div(
           class = "ref",
           h5("McMurdie PJ, Holmes S (2013) phyloseq: An R Package for Reproducible Interactive Analysis and Graphics of Microbiome Census Data. PLoS ONE 8(4): e61217. https://doi.org/10.1371/journal.pone.0061217")
         )
