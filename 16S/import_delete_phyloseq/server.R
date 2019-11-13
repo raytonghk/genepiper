@@ -62,7 +62,7 @@ shinyServer(
         req(vals$filepath)
         system(paste0("rm ", vals$filepath))
         updateSelectInput(session, "dataLabel", choices = dataNames(vals$project))
-        output$dataDetails <- NULL
+        vals$phyloseq <- NULL
         removeModal()
       }
     )
