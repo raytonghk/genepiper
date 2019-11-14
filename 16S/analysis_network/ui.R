@@ -56,7 +56,7 @@ shinyUI(
                 selectInput("corrTarget", "Correlation Target", c("Taxa", "Samples"), width = "90%"),
                 conditionalPanel(
                   condition = "input.corrTarget == 'Taxa'",
-                  selectInput("groupColumn", "Group Column", NULL, width = "90%")
+                  selectInput("groupColumn", "Group Column (At least 5 samples for each group)", NULL, width = "90%")
                 ),
                 selectInput("corrMethod", "Correlation Method", width = "90%",
                             choices = c("Pearson", "Spearman", "SparCC", "SpiecEasi")),
