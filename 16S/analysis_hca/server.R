@@ -42,7 +42,7 @@ shinyServer(
                        vals$modifiedPhyloseq <- agglomerateTaxa(vals$filteredPhyloseq, input$taxRank) %>%
                          transformCount(input$abundanceType)
                        distanceFunction<- hcaDistanceFunction(input$distanceMethod)
-                       vals$hca <- pvclust::pvclust(otuDataFrame(vals$modifiedPhyloseq), input$agglomerateMethod, distanceFunction)
+                       vals$hca <- pvclust::pvclust(otuDataFrame(vals$modifiedPhyloseq), input$agglomerateMethod, distanceFunction, nboot = input$nboot)
                        vals$distanceMethod <- input$distanceMethod
                      },
                      error = function() {
@@ -100,15 +100,27 @@ shinyServer(
     observe({
       vals$pvrectStatistics <- NULL
       req(vals$modifiedPhyloseq, vals$hca, vals$distanceMatrix, input$plotPVRect, input$pvrectAlpha)
-      vals$pvrectStatistics <- fpc::cluster.stats(vals$distanceMatrix, pvclust::pvpick(vals$hca, input$pvrectAlpha) %>%
-                                                    .$clusters %>%
-                                                    {
-                                                      map2(., seq_along(.), ~{
-                                                        `names<-`(rep(.y, length(.x)), .x)
-                                                      })
-                                                    } %>%
-                                                    unlist() %>%
-                                                    .[sample_names(vals$modifiedPhyloseq)], vals$groupFactor)
+      clust <- pvclust::pvpick(vals$hca, input$pvrectAlpha)
+      if(!is.null(clust[[1]])) {
+        clust <- clust %>%
+          .$clusters %>%
+          {
+            map2(., seq_along(.), ~{
+              `names<-`(rep(.y, length(.x)), .x)
+            })
+          } %>%
+          unlist() %>%
+          .[sample_names(vals$modifiedPhyloseq)] %>%
+          `names<-`(., sample_names(vals$modifiedPhyloseq)) %>%
+          .[order(.)] %>%
+          accumulate(~{ifelse(is.na(.y), .x + 1, .y)})
+        
+        gf <- vals$groupFactor %>%
+          `names<-`(sample_names(vals$modifiedPhyloseq)) %>%
+          .[names(clust)]
+        
+        vals$pvrectStatistics <- fpc::cluster.stats(vals$distanceMatrix, clust, gf)
+      }
     })
     
     output$downloadPVRectStatisticsButton <- downloadHandler("pvrect_stat.rds", function(file) saveRDS(vals$pvrectStatistics, file))
@@ -134,7 +146,7 @@ shinyServer(
     observe({
       vals$groupFactor <- NULL
       req(vals$modifiedPhyloseq, input$graphicGroupColumn != "None")
-      vals$groupFactor <- groupFactor(vals$modifiedPhyloseq, input$graphicGroupColumn) %>%
+      vals$groupFactor <- groupFactor(vals$modifiedPhyloseq, input$graphicGroupColumn, FALSE) %>%
         as.numeric()
     })
     

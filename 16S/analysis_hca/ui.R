@@ -82,6 +82,7 @@ shinyUI(
                               "WPGMA" = "mcquitty"
                             )
                 ),
+                numericInput("nboot", "Number Of Bootstrap Replications", 10, 0, width = "90%"),
                 uiAnalysisButton()
               ),
               
