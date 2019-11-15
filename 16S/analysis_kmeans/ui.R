@@ -78,7 +78,7 @@ shinyUI(
                 h4("Parameters:"),
                 uiTaxRank(),
                 uiAbundanceType(),
-                selectInput("dimensionReductionMethod", "Dimension Reduction Method", width = "90%",
+                selectInput("dimensionReductionMethod", "Ordination Method", width = "90%",
                             choices = list("Correspondence Analysis" = "ca",
                                            "Detrended Correspondence Analysis" = "dca",
                                            "Principal Component Analysis" = "pca",
