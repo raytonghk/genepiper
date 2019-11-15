@@ -72,10 +72,10 @@ shinyUI(
           condition = "output.filteredDataLoaded",
           wellPanel(
             class = "middle-column",
-            h4("Parameters:"),
             tags$div(
               tags$div(
                 class = "parameter-panel",
+                h4("Parameters:"),
                 uiTaxRank(),
                 uiAbundanceType(),
                 selectInput("dimensionReductionMethod", "Dimension Reduction Method", width = "90%",
