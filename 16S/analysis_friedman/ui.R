@@ -85,7 +85,7 @@ shinyUI(
                   
                   tabPanel(
                     title = "Wilcoxon Signed-rank",
-                    checkboxInput("signifAnnotation", "Significant Annotation?", FALSE)
+                    checkboxInput("signifAnnotation", "Significant Annotation?", TRUE)
                   ),
                   
                   uiTabPanelDot(DOT_SIZE, step = 0.1),

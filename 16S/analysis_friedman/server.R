@@ -129,7 +129,7 @@ shinyServer(
       yPos <- seq(maxVal + yInterval, maxVal + yInterval * length(groupComb), length.out = length(groupComb))
       
       vals$gg <- plotFriedman(plotTable, input$plotType) +
-        ggsignif::geom_signif(comparisons = groupComb, map_signif_level = !input$signifAnnotation, y_position = yPos,
+        ggsignif::geom_signif(comparisons = groupComb, map_signif_level = input$signifAnnotation, y_position = yPos,
                               test.args = list(paired = TRUE)) +
         labs(y = "Abundance") +
         ggtitle(selectedOTU)
