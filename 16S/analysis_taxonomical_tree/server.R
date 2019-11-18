@@ -45,7 +45,7 @@ shinyServer(
     # columnForSize
     observe({
       req(vals$filteredPhyloseq)
-      updateSelectInput(session, "columnForSize", choices = c("None", numericVariableNames(vals$filteredPhyloseq)))
+      updateSelectInput(session, "columnForSize", choices = c("None", "Abundance" = "abundance", numericVariableNames(vals$filteredPhyloseq)))
     })
     
     # plotButton
