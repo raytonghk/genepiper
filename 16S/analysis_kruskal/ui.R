@@ -61,6 +61,7 @@ shinyUI(
             tags$div(
               tags$div(
                 class = "parameter-panel",
+                h4("Parameters:"),
                 uiTaxRank(),
                 uiAbundanceType(c("Rarefied Count", "Relative Abundance")),
                 uiGroupColumnWithLabel(),
