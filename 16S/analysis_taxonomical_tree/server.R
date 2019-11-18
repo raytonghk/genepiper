@@ -57,8 +57,8 @@ shinyServer(
                      {
                        req(vals$filteredPhyloseq, input$taxRank)
                        phyloseq <- agglomerateTaxa(vals$filteredPhyloseq, input$taxRank) %>%
-                         filterPhyloseqTaxaByPrevalence(input$prevalence, input$taxRank) %>%
-                         filterPhyloseqTaxaByAbundance(input$displayFilter, input$displayNumber, input$taxRank)
+                         filterPhyloseqTaxaByPrevalence(input$prevalence) %>%
+                         filterPhyloseqTaxaByAbundance(input$displayFilter, input$displayNumber)
                        str(phyloseq)
                        vals$tree <- plotTree(phyloseq)
                        vals$treeHeight <- treeHeight(phyloseq)
