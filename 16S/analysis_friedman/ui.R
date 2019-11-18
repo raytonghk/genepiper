@@ -71,7 +71,7 @@ shinyUI(
               
               tags$div(
                 class = "graphic-panel",
-                h4("Graphic parameters:"),
+                h4("Graphic Parameters:"),
                 tabsetPanel(
                   id = "graphicTabset",
                   tabPanel(
