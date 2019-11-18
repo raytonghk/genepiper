@@ -84,7 +84,7 @@ shinyUI(
                   
                   tabPanel(
                     title = "Mann Whitney",
-                    checkboxInput("signifAnnotation", "Significant Annotation?", FALSE)
+                    checkboxInput("signifAnnotation", "Significant Annotation?", TRUE)
                   ),
                   
                   uiTabPanelDot(DOT_SIZE, step = 0.1),
