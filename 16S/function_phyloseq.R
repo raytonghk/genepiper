@@ -136,7 +136,7 @@ otuDataFrame <- function(phyloseq) {
 otuDataFrameWithTaxaRowname <- function(phyloseq, rank) {
   otuTable <- otuDataFrame(phyloseq)
   if(rank != "OTU") {
-    `rownames<-`(otuTable, otuNamedTaxa(phyloseq, rank)[rownames(otuTable)])
+    `rownames<-`(otuTable, make.names(otuNamedTaxa(phyloseq, rank)[rownames(otuTable)], unique = TRUE))
   } else {
     otuTable
   }
