@@ -49,6 +49,7 @@ shinyUI(
           h4("Both samples and taxa are often jointly depicted in the ordination space, where the centre of inertia (centroid) of their scores corresponds to zero for all axes. Depending on the choice of the scaling type, either the ordination of rows (samples) or the columns (species) is meaningful, and can be interpreted as an approximation of the Chi Square distances between samples or species, respectively. Sample points that are close to each other are similar with regard to the pattern of relative frequencies across species. It is important to remember that in such joint plots, either distances between sample points or distances between species points can be interpreted, but not the distances between sample and species points. Indeed, these distances are not simple Euclidean distances computed from the relative row or column frequencies, but rather they are weighted distances. The proximity between sample and species points in the plot can thus be understood as a probability of species occurrence or of a high abundance in the samples in the vicinity of a species point."),
           h4("In scaling 2 (i.e. focus on species), species points found at the centre of the ordination space should be carefully checked with the raw data to clarify whether the species ordination really corresponds to the optimal abundance or occurrence of the species, or whether the species is just badly represented by the main axes, as it is the case when other axes are more appropriate to represent the species. Rare species contribute little to the total table inertia (i.e. they only play a minor role in the overall table variance) and are hence positioned at the edges of the plot, next to the sample(s) where they occur. In general, only the species points found away from the ordination centre and not close to the edges of the ordination have more chances to be related to the ordination axes, i.e. to contribute to the overall variance (Legendre & Legendre, 2012)."),
           h4("When the species composition of the samples progressively changes along the environmental gradient, sample positions may appear in the ordination plot as nonlinear configurations called ‘arch’ (Gauch, 1982) (or ‘horseshoe’ in the case of PCA), which may impair further ecological interpretation. In CA, the arch effect may be mathematically produced as a side-effect of the CA procedure that tries to obtain axes that both maximally separate species and that are uncorrelated to each other (ter Braak, 1987): when the first axis suffices to correctly order the samples and species, a second axis (uncorrelated with the former) can be obtained by folding the first axis in the middle and bringing its extremities together, thus resulting in an arch configuration. Further axes can be obtained by further dividing and folding the first axis into segments (Legendre & Legendre, 2012). To remove the arch effect in CA, a mathematical procedure, detrending, is used to flatten the distribution of the sites along the first CA axis without changing their ordination on that axis. The approach is then designated as Detrended Correspondence Analysis (DCA). GenePiper also provides analytical module for DCA.  For more information about the different detrending algorithms such as using segments or polynomials see ter Braak & Prentice, (1988) and Legendre & Legendre (2012). Some researchers have also argued that the arch effect may not be an artifact but an expected feature of the analysis, especially when species turnover is high along environmental gradients (James & McCulloch, 1990). In that case, if the samples are meaningfully positioned along the arch, the ordination should be accepted as a valid result. "),
+          a(target = "_blank", href="https://academic.oup.com/femsec/article/62/2/142/434668", "Source: Ramette(2007)"),
           a(target = "_blank", href="https://github.com/raytonghk/genepiper/wiki/14.-Correspondence-Analysis", "see GenePiper Tutorial about CA")
         ),
         tags$div(
@@ -146,50 +147,4 @@ shinyUI(
     )
   )
 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
