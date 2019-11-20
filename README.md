@@ -13,7 +13,7 @@
 
 
 ### Installation:
-1. Download the [Vagrantfile](https://github.com/raytonghk/genepiper/blob/master/Vagrantfile) (press ALT + click "Raw" at the top right corner)
+1. Download the [Vagrantfile](https://github.com/raytonghk/genepiper/blob/master/Vagrantfile): press ALT (or option key in Apple keyboard) + click "Raw" at the top right corner
 2. Create a working directory and copy the `Vagrantfile` into it.
 3. If the `Vagrantfile` contains any extension, e.g. `.txt`, remove it.
 4. Run `vagrant up` in the working directory in terminal (Linux / Mac) or command prompt (Windows).
