@@ -29,7 +29,7 @@ shinyUI(
            class = "desc",
           p("This module provides options to display phylogenetic trees at a user-specified taxonomic rank with annotation about the samples. Branches of the phylogenetic tree will be collapsed according to the taxonomic rank selected. Prevalence and abundance filters are provided ad hoc. User may select a variable from the sample data table to customise the colour and shape of the annotation symbols. There is also an option to display the abundance information in terms of the annotation symbol size."),
           p("GenePiper utilises the plot_tree function from the phyloseq package (McMurdie & Holmes, 2013) to generate the plot. The phylogenetic tree uploaded to the data will be displayed. GenePiper provides a helper function to build Maximum Likelihood phylogenetic tree from a multiple seqeunce aligment file."), 
-           a(target = "_blank", href="https://joey711.github.io/phyloseq/plot_tree-examples.html", "Check out the phyloseq tutorial; ")
+           a(target = "_blank", href="https://joey711.github.io/phyloseq/plot_tree-examples.html", "Check out the phyloseq tutorial; "),
           a(target = "_blank", href="https://github.com/raytonghk/genepiper/wiki/12.-Taxonomical-Tree", "See also our tutorial about this module.")          
           ),
 
