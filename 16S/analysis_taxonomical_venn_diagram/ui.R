@@ -27,9 +27,9 @@ shinyUI(
         h4("Taxonomical Venn Diagram"),
         tags$div(
           class = "desc",
-          p("This module provides options to plot a venn diagram comparing the membership of microbial communities at a user-specified taxonomic rank for up to 5 samples or groups. Venn diagram is commonly used to viusalize the comparison of lists of objects.It is most often displayed as two or more circles in which each circle corresponds to a data set, and the overlap between the circles corresponds to the overlap between the data sets. User may then quickly observe the common and unique set of taxa amongst the samples/ groups of samples they are analyzing"),
-          p("GenePiper utilises the VennDiagram package (Chen & Boutros, 2011) to generate the plot. User may specify the taxonomic rank of taxa for the plot. From the Group column, user may select either 'Sample' or a varaible from the sample data table to group the samples for comparison"),
-          a(target = "_blank", href="https://github.com/raytonghk/genepiper/wiki/13.-Taxonomical-Venn-Diagram", "see our tutorial about this module.")          
+          p("This module provides options to plot a venn diagram comparing the membership of microbial communities at a user-specified taxonomic rank for up to 5 samples or groups. Venn diagram is commonly used to viusalize the comparison of lists of objects.It is most often displayed as two or more circles in which each circle corresponds to a data set, and the overlap between the circles corresponds to the overlap between the data sets. User may then quickly observe the common and unique set of taxa amongst the samples/ groups of samples they are analyzing."),
+          p("GenePiper utilises the VennDiagram package (Chen & Boutros, 2011) to generate the plot. User may specify the taxonomic rank of taxa for the plot. From the Group column, user may select either 'Sample' or a varaible from the sample data table to group the samples for comparison."),
+          a(target = "_blank", href="https://github.com/raytonghk/genepiper/wiki/13.-Taxonomical-Venn-Diagram", "See our tutorial about this module.")          
           ),
         tags$div(
           class = "ref",
