@@ -44,20 +44,29 @@ shinyUI(
         h4("Principal Component Analysis (PCA)"),
         tags$div(
           class = "desc",
-          p("Principal component analysis (PCA) is a statistical procedure that uses an orthogonal transformation to convert a set of observations of possibly correlated variables into a set of values of linearly uncorrelated variables called principal components. The number of distinct principal components is equal to the smaller of the number of original variables or the number of observations minus one. This transformation is defined in such a way that the first principal component has the largest possible variance (that is, accounts for as much of the variability in the data as possible), and each succeeding component in turn has the highest variance possible under the constraint that it is orthogonal to the preceding components. The resulting vectors are an uncorrelated orthogonal basis set. PCA is sensitive to the relative scaling of the original variables."),
-          p("PCA is the simplest of the true eigenvector-based multivariate analyses. Often, its operation can be thought of as revealing the internal structure of the data in a way that best explains the variance in the data. If a multivariate dataset is visualised as a set of coordinates in a high-dimensional data space (1 axis per variable), PCA can supply the user with a lower-dimensional picture, a projection of this object when viewed from its most informative viewpoint. This is done by using only the first few principal components so that the dimensionality of the transformed data is reduced."),
-          a(target = "_blank", href="https://en.wikipedia.org/wiki/Principal_component_analysis", "From Wikipedia")
+          p("Principal components analysis (PCA) is one of the most widely used and one of the oldest methods of ordination analyses (Pearson 1901). It is a statistical procedure that uses an orthogonal transformation to convert a set of observations of possibly correlated variables into a set of values of linearly uncorrelated synthetic variables called principal components. The number of distinct principal components is equal to the smaller of the number of original variables or the number of observations minus one. Each principal component (PC) is a linear combination of original variables calculated so that the first PC represents an axis in the multidimensional data space that would produce the largest dispersion of values along this component. Other principal components are calculated as orthogonal to the preceding components and similarly are positioned along the largest remaining scatter of the values. Thus, PCA creates a rotation of the original system of coordinates so that the new axes (principal components) are orthogonal to each other and correspond to the directions of largest variance in the data set. PCA is sensitive to the relative scaling of the original variables."),
+          p("By definition, the first PC axis of the PCA output represents the largest gradient of variability in the data set, PC2 axis—the second largest, and so forth, until all data set variability has been accounted for. Each object can thus be given a new set of coordinates in the principal components space, and the distribution of objects in that space will correspond to the similarity of the variables’ scores in those objects.
+"),
+        p("Because PCA uses Euclidean distance to measure dissimilarity among objects, care should be taken when using PCA on a data set with many zeroes, as is often the case for data with long gradients. As described in detail by Legendre & Gallagher (2001), when run on such data sets, PCA can generate severe artefacts such as horseshoe visualisation effect (see Legendre & Legendre 2012; ter Braak & Smilauer 2015, for examples). With this artefact, objects at the edges of the environmental gradient actually appear close to each other in the ordination space (Novembre & Stephens 2008). While the horseshoe effect can be partially reduced by processing of the original data values through a chord or Hellinger transformation before running PCA (Legendre & Gallagher 2001), the use of correspondence analysis (CA) is usually advocated for such data sets (ter Braak & Smilauer 2015). "),
+          p("Thus PCA should generally be used when the objects (sites or samples) cover very short gradients, i.e. when the same species are mostly identified everywhere in the study area (i.e., when samples mostly differ in species abundances), and when species linearly respond to environmental gradients. Because those conditions are often not met in ecological studies, other multivariate approaches have been progressively preferred over PCA such as correspondence analysis (CA) or multidimensional scaling (PCoA). "),
+          p("PCA is successful when most of the variance is accounted for by the largest (generally the first two or three) components. The amount of variance accounted for by each principal component is given by its ‘eigenvalue.’ Eigenvalues derived from a PCA are generally considered to be significant when their values are larger than the average of all eigenvalues (Legendre & Legendre, 2012). The cumulative percentage of variance accounted for by the largest components indicates how much proportion of the total variance is depicted by the actual ordination. High absolute correlation values between the synthetic variables (principal components) and the original variables are useful to identify which variables mainly contribute to the variation in the data set, and this is referred to as the loading of the variables on a given axis. However, because the synthetic and original variables are linearly correlated (i.e. they are not independent), standard tests to determine the statistical significance of the correlations between them cannot be used."),
+          a(target = "_blank", href="https://github.com/raytonghk/genepiper/wiki/16.-Principal-Component-Analysis", "See our tutorial about PCA.")
         ),
         tags$div(
           class = "ref",
-          h5("Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) The New S Language. Wadsworth & Brooks/Cole."),
-          h5("Mardia, K. V., J. T. Kent, and J. M. Bibby (1979) Multivariate Analysis, London: Academic Press."),
-          h5("Venables, W. N. and B. D. Ripley (2002) Modern Applied Statistics with S, Springer-Verlag."),
-          h5("Anderson, M.J. 2001. A new method for non-parametric multivariate analysis of variance. Austral Ecology, 26: 32–46."),
-          h5("Excoffier, L., P.E. Smouse, and J.M. Quattro. 1992. Analysis of molecular variance inferred from metric distances among DNA haplotypes: Application to human mitochondrial DNA restriction data. Genetics, 131:479–491."),
-          h5("Legendre, P. and M.J. Anderson. 1999. Distance-based redundancy analysis: Testing multispecies responses in multifactorial ecological experiments. Ecological Monographs, 69:1–24."),
-          h5("McArdle, B.H. and M.J. Anderson. 2001. Fitting multivariate models to community data: A comment on distance-based redundancy analysis. Ecology, 82: 290–297."),
-          h5("Warton, D.I., Wright, T.W., Wang, Y. 2012. Distance-based multivariate analyses confound location and dispersion effects. Methods in Ecology and Evolution, 3, 89–101.")
+          h5("Anderson MJ (2001) A new method for non-parametric multivariate analysis of variance. Austral Ecology, 26: 32–46."),
+          h5("Becker RA, Chambers JM & Wilks AR (1988) The New S Language. Wadsworth & Brooks/Cole."),                 
+          h5("Excoffier L, Smouse PE & Quattro JM (1992) Analysis of molecular variance inferred from metric distances among DNA haplotypes: Application to human mitochondrial DNA restriction data. Genetics, 131:479–491."),
+          h5("Legendre P &  Anderson MJ (1999) Distance-based redundancy analysis: Testing multispecies responses in multifactorial ecological experiments. Ecological Monographs, 69:1–24."),
+          h5("Legendre P & Gallagher ED (2001) Ecologically meaningful transformations for ordination of species data. Oecologia 129:271-280."),
+          h5("Legendre P & Legendre LFJ (2012) Numerical ecology. Vol. 24. Elsevier."),
+          h5("Mardia KV, Kent JT & Bibby JM (1979) Multivariate Analysis, London: Academic Press."),
+          h5("McArdle BH & Anderson MJ (2001) Fitting multivariate models to community data: A comment on distance-based redundancy analysis. Ecology, 82: 290–297."),
+          h5("Novembre J & Stephens M (2008) Interpreting principal component analyses of spatial population genetic variation. Nature Genetics, 40, 646–649."),
+          h5("Pearson K (1901) On lines and planes of closest fit to systems of points in space. Philosophical Magazine, 2, 559–572."),
+          h5("ter Braak CJF & Smilauer P (2015) Topics in constrained and unconstrained ordination. Plant Ecology, 216, 683–696."),
+          h5("Venables WN & Ripley BD (2002) Modern Applied Statistics with S, Springer-Verlag."), 
+          h5("Warton DI, Wright TW & Wang Y (2012) Distance-based multivariate analyses confound location and dispersion effects. Methods in Ecology and Evolution, 3, 89–101.")
         )
       ),
       
@@ -138,51 +147,3 @@ shinyUI(
     )
   )
 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
