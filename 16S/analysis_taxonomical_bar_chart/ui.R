@@ -31,12 +31,15 @@ shinyUI(
         h4("Taxonomical Bar Chart"),
         tags$div(
           class = "desc",
-          p("This module provides options to plot a stacked bar-chart showing the composition of microbial communities at a specified taxonomic rank.This is commonly done at a higher taxonomic rank to have an overview of the microbiome in the cohort.")
+          p("This module provides options to plot a stacked bar-chart showing the abundances of microbial communities at a user-specified taxonomic rank. This is commonly done at a higher taxonomic rank (Phylum) to obtain an overview of the microbiome composition in the cohort. User may plot the abundances in terms of raw read counts, relative abundances or read counts after rarefying microbiome to the lowest one amongst samples. Prevalence and abundance filters are provided ad hoc. User may select a variable from the sample data table for grouping of samples. Sample labels will be coloured and arranged in an order according to the grouping. "),
+          p("GenePier utilises ggplot2 package to generate the stacked bar-chart."),
+          a(target = "_blank", href="https://github.com/raytonghk/genepiper/wiki/10.-Taxonomical-Bar-Chart", "see our tutorial about this module")
           ),
         
         tags$div(
           class = "ref",
-          h5("McMurdie PJ, Holmes S (2013) phyloseq: An R Package for Reproducible Interactive Analysis and Graphics of Microbiome Census Data. PLoS ONE 8(4): e61217. https://doi.org/10.1371/journal.pone.0061217")
+          h5("McMurdie PJ, Holmes S (2013) Phyloseq: An R Package for Reproducible Interactive Analysis and Graphics of Microbiome Census Data. PLoS ONE 8(4): e61217. https://doi.org/10.1371/journal.pone.0061217"),
+          h5("Sudarikov K, Tyakht A, Alexeev D (2017) Methods for the metagenomic data visualization and analysis. Curr Issues Mol Biol. 24:37-58.")
         )
       ),
       
@@ -91,49 +94,5 @@ shinyUI(
     )
   )
 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
