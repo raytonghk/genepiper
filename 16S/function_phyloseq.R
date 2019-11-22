@@ -217,3 +217,7 @@ variableType <- function(phyloseq, column) {
   )
 }
 
+removeEmptyColumn <- function(table) {
+  table[, colSums(table) > 0]
+}
+

@@ -41,6 +41,7 @@ shinyServer(
                          transformCount(input$abundanceType)
                        vals$pca <- otuDataFrameWithTaxaRowname(vals$modifiedPhyloseq, input$taxRank) %>%
                          t() %>%
+                         removeEmptyColumn() %>%
                          prcomp(scale. = input$scaleVariable)
                      },
                      error = function(e) {
