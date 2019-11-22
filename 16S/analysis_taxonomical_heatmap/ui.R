@@ -30,8 +30,16 @@ shinyUI(
         class = "desc-box",
         h4("Taxonomical Heatmap"),
         tags$div(
+          class = "desc",
+          p("This module provides options to plot a heatmap showing the abundances of microbial communities at a user-specified taxonomic rank. Heatmap is false colour image where data units in the matrix with high relative values are coloured differently from those with low relative values. Heatmap can range from very simple blocks of colour with lists of variables along 2 sides/axes, or they can include information from hierarchical clustering, phylogenetic tree among taxa or any values of other covariates of interest. Heatmap is useful and highly used for the visual display of high-dimensional data as in microbiome composition and gene expression array data."),
+          p("GenePiper utilises the ggplot2 package to generate the taxa by sample heatmap. User may plot the abundances in terms of raw read counts, relative abundances or read counts after rarefying microbiome to the lowest one amongst samples. Abundance filter is provided ad hoc, where user may select to display either the most or the least abundant taxa. Options for hierarchical clustering of both the sample and taxa; and grouping of samples by a variable from the sample data table are available."),
+          a(target = "_blank", href="https://www.molecularecologist.com/2013/08/making-heatmaps-with-r-for-microbiome-analysis/", "see Making heatmaps with R for microbiome analysis by Jeremy Yoder; "),
+          a(target = "_blank", href="https://github.com/raytonghk/genepiper/wiki/11.-Taxonomical-Heatmap", "see also our tutorial about this module.")          
+          ),
+        tags$div(
           class = "ref",
-          h5("McMurdie PJ, Holmes S (2013) phyloseq: An R Package for Reproducible Interactive Analysis and Graphics of Microbiome Census Data. PLoS ONE 8(4): e61217. https://doi.org/10.1371/journal.pone.0061217")
+          h5("McMurdie PJ, Holmes S (2013) phyloseq: An R Package for Reproducible Interactive Analysis and Graphics of Microbiome Census Data. PLoS ONE 8(4): e61217. https://doi.org/10.1371/journal.pone.0061217"),
+          h5("Sudarikov K, Tyakht A, Alexeev D (2017) Methods for the metagenomic data visualization and analysis. Curr Issues Mol Biol. 24:37-58.")
         )
       ),
       
