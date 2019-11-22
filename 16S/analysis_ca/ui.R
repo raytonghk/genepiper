@@ -1,7 +1,7 @@
 library(shiny)
 library(shinyjs)
 library(bsplus)
-source("../style.R")
+source("../style.R") 
 source("../ui_additional.R")
 source("../ui_panel_load_data.R")
 source("../ui_panel_filter.R")

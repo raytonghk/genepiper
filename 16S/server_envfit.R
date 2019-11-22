@@ -32,11 +32,60 @@ output$downloadEnvfit <- downloadHandler("envfit.rds", function(file) {
 observe({
   req(vals$envfit)
   choices <- rownames(vegan::scores(vals$envfit, display = "vector"))
-  updateCheckboxGroupInput(session, "envfitVectorLabel", choices = choices, selected = choices)
+  updateCheckboxGroupInput(session, "envfitVectorLabel", choices = choices)
 })
 
 observe({
   req(vals$envfit)
-  choices <- rownames(vegan::scores(vals$envfit, display = "factor"))
-  updateCheckboxGroupInput(session, "envfitFactorLabel", choices = choices, selected = choices)
+  cols <- characterVariableNames(vals$modifiedPhyloseq)
+  removeUI("#envfitFactorContainer")
+  insertUI("#envfitFactor", "beforeBegin", tags$div(id = "envfitFactorContainer"))
+  map(cols, ~{
+    id <- gsub("\\.", "_", .x)
+    insertUI("#envfitFactorContainer", "beforeEnd",
+             tags$div(
+               checkboxInput(paste0("envfitFactorCol", id), .x, FALSE),
+               conditionalPanel(
+                 condition = paste0("input.envfitFactorCol", id, " == true"),
+                 checkboxGroupInput(paste0("envfitFactorCol", id, "Label"), NULL, unique(get_variable(vals$modifiedPhyloseq, .x)))
+               )
+             ))
+    observe({
+      req(input[[paste0("envfitFactorCol", id)]])
+      updateCheckboxGroupInput(session, paste0("envfitFactorCol", id, "Label"), selected = unique(get_variable(vals$modifiedPhyloseq, .x)))
+    })
+    observe({
+      req(input[[paste0("envfitFactorCol", id)]] == FALSE)
+      updateCheckboxGroupInput(session, paste0("envfitFactorCol", id, "Label"), selected = c())
+    })
+  })
 })
+
+observe({
+  req(vals$modifiedPhyloseq)
+  cols <- characterVariableNames(vals$modifiedPhyloseq)
+  
+  vals$envfitFactorLabel <- NULL
+  vals$envfitFactorLabel <- map(cols, ~{
+    id <- gsub("\\.", "_", .x)
+    if(isTruthy(input[[paste0("envfitFactorCol", id)]])) {
+      paste0(.x, input[[paste0("envfitFactorCol", id, "Label")]])
+    }
+  }) %>%
+    unlist()
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

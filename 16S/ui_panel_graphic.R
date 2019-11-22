@@ -10,7 +10,7 @@ uiTabPanelEnvfit <- function(ENVFIT_VECTOR_LINE_SIZE, ENVFIT_VECTOR_LABEL_SIZE, 
   tabPanel(
     title = "Envfit",
     tags$br(),
-    tags$p("Fit the numeric sample data to the ordination by",
+    tags$p("Fit sample data to the ordination by",
            tags$a(target = "_blank", href = "https://www.rdocumentation.org/packages/vegan/versions/2.4-2/topics/envfit", "vegan::envfit"),
            "."),
     tags$div(
@@ -34,7 +34,7 @@ uiTabPanelEnvfit <- function(ENVFIT_VECTOR_LINE_SIZE, ENVFIT_VECTOR_LABEL_SIZE, 
           ),
           tabPanel(
             title = "Factor",
-            checkboxGroupInput("envfitFactorLabel", "Factors:", NULL),
+            tags$div(id = "envfitFactor"),
             numericInput("envfitFactorDotSize", "Dot Size", value = ENVFIT_FACTOR_DOT_SIZE, width = "45%"),
             numericInput("envfitFactorLabelSize", "Label Size", value = ENVFIT_FACTOR_LABEL_SIZE, width = "45%")
           )

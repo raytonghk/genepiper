@@ -157,7 +157,7 @@ shinyServer(
     plotNmdsWithoutGroup <- function() {
       gg <- ggplot()
       if(isTruthy(vals$envfit) && input$plotEnvfit) {
-        gg <- plotEnvfit(gg, vals$envfit, vals$sampleTable, input$plotAxis2d, input$envfitFactorLabel, input$envfitVectorLabel, 
+        gg <- plotEnvfit(gg, vals$envfit, vals$sampleTable, input$plotAxis2d, vals$envfitFactorLabel, input$envfitVectorLabel, 
                          input$envfitFactorDotSize, input$envfitFactorLabelSize, input$envfitVectorLineSize, input$envfitVectorLabelSize)
       }
       if(input$plotSample) {
@@ -170,7 +170,7 @@ shinyServer(
       sampleTable <- sampleTableWithGroup(vals$sampleTable, vals$modifiedPhyloseq, input$graphicGroupColumn)
       gg <- ggplot()
       if(isTruthy(vals$envfit) && input$plotEnvfit) {
-        gg <- plotEnvfit(gg, vals$envfit, vals$sampleTable, input$plotAxis2d, input$envfitFactorLabel, input$envfitVectorLabel, 
+        gg <- plotEnvfit(gg, vals$envfit, vals$sampleTable, input$plotAxis2d, vals$envfitFactorLabel, input$envfitVectorLabel, 
                          input$envfitFactorDotSize, input$envfitFactorLabelSize, input$envfitVectorLineSize, input$envfitVectorLabelSize)
       }
       if(input$plotSample) {

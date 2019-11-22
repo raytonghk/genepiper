@@ -189,7 +189,7 @@ shinyServer(
         gg <- plotLoading(gg)
       }
       if(isTruthy(vals$envfit) && input$plotEnvfit) {
-        gg <- plotEnvfit(gg, vals$envfit, vals$sampleTable, input$plotAxis2d, input$envfitFactorLabel, input$envfitVectorLabel, 
+        gg <- plotEnvfit(gg, vals$envfit, vals$sampleTable, input$plotAxis2d, vals$envfitFactorLabel, input$envfitVectorLabel, 
                          input$envfitFactorDotSize, input$envfitFactorLabelSize, input$envfitVectorLineSize, input$envfitVectorLabelSize)
       }
       if(input$plotSample) {
@@ -205,7 +205,7 @@ shinyServer(
         gg <- plotLoading(gg)
       }
       if(isTruthy(vals$envfit) && input$plotEnvfit) {
-        gg <- plotEnvfit(gg, vals$envfit, vals$sampleTable, input$plotAxis2d, input$envfitFactorLabel, input$envfitVectorLabel, 
+        gg <- plotEnvfit(gg, vals$envfit, vals$sampleTable, input$plotAxis2d, vals$envfitFactorLabel, input$envfitVectorLabel, 
                          input$envfitFactorDotSize, input$envfitFactorLabelSize, input$envfitVectorLineSize, input$envfitVectorLabelSize)
       }
       if(input$plotSample) {
