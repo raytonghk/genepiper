@@ -42,17 +42,23 @@ shinyUI(
         h4("Principal Coordinates Analysis (PCoA)"),
         tags$div(
           class = "desc",
-          p("Multidimensional scaling (MDS) is a means of visualizing the level of similarity of individual cases of a dataset. It refers to a set of related ordination techniques used in information visualization, in particular to display the information contained in a distance matrix. It is a form of non-linear dimensionality reduction. An MDS algorithm aims to place each object in N-dimensional space such that the between-object distances are preserved as well as possible. Each object is then assigned coordinates in each of the N dimensions. The number of dimensions of an MDS plot N can exceed 2 and is specified a priori. Choosing N=2 optimizes the object locations for a two-dimensional scatterplot."),
-          a(target = "_blank", href="https://en.wikipedia.org/wiki/Multidimensional_scaling#Types", "From Wikipedia")
+          p("Principal Coordinates Analysis (PCoA), also known as Multidimensional scaling (MDS), is an exploratory multivariate method commonly used for microbiome data. It is a conceptual extension of the PCA technique that it uses a linear (Euclidean) mapping of the distance or dissimilarities between objects (samples) onto the ordination space (i.e. projection in a Cartesian space), and the algorithm attempts to explain most of the variance in the original data set (Gower, 1966)."),
+          p("As opposed to PCA, PCoA works with any dissimilarity measure and so specific association coefficients that better deal with the problem of the presence of many double zeros in data sets can be surmounted. Moreover, PCoA does not provide a direct link between the components and the original variables and so the interpretation of variable contribution may be more difficult. This is because PCoA components, instead of being linear combinations of the original variables as in PCA, are complex functions of the original variables depending on the selected dissimilarity measure. Besides, the non-Euclidean nature of some distance measures does not allow for a full representation of the extracted variation into a Euclidean ordination space. In that case, the non-Euclidean variation cannot be represented and the percent of total variance cannot be computed with exactness. The choice of the dissimilarity measure is thus of great importance, and subsequent transformation of the data to correct for negative eigenvalues is sometimes necessary (see Legendre & Legendre, 2012, section 9.2.4. for how to correct for such negative eigenvalues). "),
+          p("Objects are represented as points in the ordination space. Eigenvalues are also used here to measure how much variance is accounted for by the largest synthetic variables on each PCoA synthetic axis. Although there is no direct, linear relationship between the components and the original variables, it is still possible to correlate object scores on the main axis (or axes) with the original variables to assess their contribution to the ordination."),
+          p("Summarized from Ramette 2007, Paliy & Shankar 2016"),
+          p("GenePiper utilises the `pcoa` function from the `ape` package for the PCoA analysis. Options for indirect gradient analyses are provided in the graphical parameters: Group and Envfit, where metadata could be mapped into the ordination by the colour of the data points, or by fitting the environmental vectors as arrows and dots via the vegan::envfit function that overlay onto the ordination."),
+          a(target = "_blank", href="https://github.com/raytonghk/genepiper/wiki/17.-Principal-Coordinates-Analysis/", "See our tutorial on PCoA here.")
         ),
         tags$div(
           class = "ref",
-          h5("Cailliez, F. (1983) The analytical solution of the additive constant problem. Psychometrika, 48, 305–308."),
-          h5("Gower, J. C. (1966) Some distance properties of latent root and vector methods used in multivariate analysis. Biometrika, 53, 325–338."),
-          h5("Gower, J. C. and Legendre, P. (1986) Metric and Euclidean properties of dissimilarity coefficients. Journal of Classification, 3, 5–48."),
-          h5("Legendre, P. and Gallagher, E. D. (2001) Ecologically meaningful transformations for ordination of species data. Oecologia, 129, 271–280."),
-          h5("Legendre, P. and Legendre, L. (1998) Numerical Ecology, 2nd English edition. Amsterdam: Elsevier Science BV"),
-          h5("Lingoes, J. C. (1971) Some boundary conditions for a monotone analysis of symmetric matrices. Psychometrika, 36, 195–203.")
+          h5("Cailliez F (1983) The analytical solution of the additive constant problem. Psychometrika, 48, 305–308."),
+          h5("Gower JC (1966) Some distance properties of latent root and vector methods used in multivariate analysis. Biometrika, 53, 325–338."),
+          h5("Gower JC & Legendre P (1986) Metric and Euclidean properties of dissimilarity coefficients. Journal of Classification, 3, 5–48."),
+          h5("Legendre P & Gallagher ED (2001) Ecologically meaningful transformations for ordination of species data. Oecologia, 129, 271–280."),
+          h5("Legendre P & Legendre L (2012) Numerical Ecology. Vol. 24. Elsevier."),
+          h5("Lingoes JC (1971) Some boundary conditions for a monotone analysis of symmetric matrices. Psychometrika, 36, 195–203."),
+          h5("Paliy O & Shankar V. (2016) Application of multivariate statistical techniques in microbial ecology. Molecular ecology. 25(5):1032-57."),
+          h5("Ramette A (2007) Multivariate analyses in microbial ecology. FEMS microbiology ecology. 62(2):142-60.")
         )
       ),
       
@@ -137,45 +143,5 @@ shinyUI(
     )
   )
 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
