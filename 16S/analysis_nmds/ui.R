@@ -84,6 +84,7 @@ shinyUI(
                 uiTaxRank(),
                 uiAbundanceType(),
                 uiDistanceMethod(),
+                numericInput("k", "Number Of Dimensions (k)", 2, width = "90%"),
                 tags$div(
                   h5("Number Of Try:", style = "font-weight: bold"),
                   tags$div(

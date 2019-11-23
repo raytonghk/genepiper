@@ -29,6 +29,19 @@ shinyServer(
     serverTaxRank()
     serverDistanceMethod()
     
+    observe({
+      req(vals$filteredPhyloseq, input$k)
+      maxK <- floor((nsamples(vals$filteredPhyloseq) - 2) / 2)
+      if(input$k < 2) {
+        updateNumericInput(session, "k", value = 2)
+      }
+      if(input$k > maxK) {
+        updateNumericInput(session, "k", value = maxK)
+      }
+    })
+    
+    
+    
     # analysisButton
     observeEvent(input$analysisButton,
                  {
@@ -42,7 +55,8 @@ shinyServer(
                        vals$modifiedPhyloseq <- agglomerateTaxa(vals$filteredPhyloseq, input$taxRank) %>%
                          transformCount(input$abundanceType)
                        vals$distanceMatrix <- distanceMatrix(vals$modifiedPhyloseq, input$distanceMethod)
-                       vals$nmds <- vegan::metaMDS(vals$distanceMatrix, k = (nsamples(vals$modifiedPhyloseq) - 2) / 2,
+                       vals$k <- input$k
+                       vals$nmds <- vegan::metaMDS(vals$distanceMatrix, k = input$k,
                                                    try = input$try, trymax = input$tryMax)
                      },
                      error = function(e) {
@@ -202,6 +216,15 @@ shinyServer(
     
     ## 3D Plot Tab
     source("../server_3d_plot.R", local = TRUE)
+    
+    observe({
+      req(vals$k)
+      if(vals$k == 2) {
+        hideTab("resultTabset", "3D Plot")
+      } else {
+        showTab("resultTabset", "3D Plot")
+      }
+    })
     
     output$plot3d <- plotly::renderPlotly(vals$pl)
     
