@@ -42,3 +42,7 @@ Biom sample file `rich_dense_otu_table.biom` is also provided.
 ### Tutorials:
 
 For detailed walkthrough of each module, please refer to our [Wiki](https://github.com/raytonghk/genepiper/wiki/01.-Introduction) page.
+
+### Citation:
+
+Please cite GenePiper as follows: "Tong WM, Chan Y. 2020. GenePiper: a graphical user interface tool for microbiome sequence data mining. Microbiol Resour Announc 9:e01195-19. https://doi.org/10.1128/MRA.01195-19."
