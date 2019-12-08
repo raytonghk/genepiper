@@ -29,3 +29,19 @@ observe({
     enable("labelTaxa3d")
   }
 })
+
+observe({
+  output$plotAxis2dMessage <- renderText(NULL)
+  req(input$plotAxis2d)
+  if(length(input$plotAxis2d) != 2) {
+    output$plotAxis2dMessage <- renderText(HTML("Error: Please select exactly 2 axes."))
+  }
+})
+
+observe({
+  output$plotAxis3dMessage <- renderText(NULL)
+  req(input$plotAxis3d)
+  if(length(input$plotAxis3d) != 3) {
+    output$plotAxis3dMessage <- renderText(HTML("Error: Please select exactly 3 axes."))
+  }
+})
