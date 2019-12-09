@@ -99,7 +99,7 @@ shinyServer(
     
     observe({
       vals$pvrectStatistics <- NULL
-      req(vals$modifiedPhyloseq, vals$hca, vals$distanceMatrix, input$plotPVRect, input$pvrectAlpha)
+      req(vals$modifiedPhyloseq, vals$hca, vals$distanceMatrix, input$plotPVRect, input$pvrectAlpha, input$graphicGroupColumn != "None")
       clust <- pvclust::pvpick(vals$hca, input$pvrectAlpha)
       if(!is.null(clust[[1]])) {
         clust <- clust %>%
