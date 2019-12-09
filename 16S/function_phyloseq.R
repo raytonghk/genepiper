@@ -16,7 +16,8 @@ agglomerateTaxa <- function(phyloseq, taxRank) {
 }
 
 characterVariableNames <- function(phyloseq) {
-  get_variable(phyloseq) %>%
+  sample_data(phyloseq) %>%
+    as("data.frame") %>%
     select_if(is.character) %>%
     colnames()
 }
@@ -124,7 +125,8 @@ logicalVariableNames <- function(phyloseq) {
 }
 
 numericVariableNames <- function(phyloseq) {
-  get_variable(phyloseq) %>%
+  sample_data(phyloseq) %>%
+    as("data.frame") %>%
     select_if(is.numeric) %>%
     colnames()
 }
