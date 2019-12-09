@@ -139,7 +139,9 @@ shinyServer(
     
     observeEvent(input$downloadDialogButton, showModal(downloadImageDialogWithoutDim()))
     
-    output$imageDownloadButton <- downloadHandler(paste0(input$imageFileName, ".html"),
+    output$imageDownloadButton <- downloadHandler(filename = function() {
+      paste0(input$imageFileName, ".html")
+    },
                                                   content = function(file) {
                                                     visNetwork::visSave(vals$vis, file)
                                                     removeModal()

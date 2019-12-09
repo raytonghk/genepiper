@@ -248,7 +248,9 @@ shinyServer(
     
     observeEvent(input$downloadDialogButton, showModal(downloadImageDialog()))
     
-    output$imageDownloadButton <- downloadHandler(paste0(input$imageFileName, ".png"),
+    output$imageDownloadButton <- downloadHandler(filename = function() {
+      paste0(input$imageFileName, ".png")
+    },
                                                   content = function(file) {
                                                     ggsave(file, vals$formatedGg, "png", height = input$imageHeight, width = input$imageWidth)
                                                     removeModal()

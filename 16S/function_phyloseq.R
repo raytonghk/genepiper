@@ -188,7 +188,8 @@ sampleNamedVariable <- function(phyloseq, variableName) {
 }
 
 sampleGroupTable <- function(phyloseq, groupColumn) {
-  get_variable(phyloseq) %>%
+  sample_data(phyloseq) %>%
+    as("data.frame") %>%
     rownames_to_column("Sample") %>%
     select(one_of(c("Sample", groupColumn)))
 } 

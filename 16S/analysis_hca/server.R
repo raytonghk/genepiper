@@ -210,7 +210,9 @@ shinyServer(
     
     observeEvent(input$downloadDialogButton, showModal(downloadImageDialog()))
     
-    output$imageDownloadButton <- downloadHandler(paste0(input$imageFileName, ".png"),
+    output$imageDownloadButton <- downloadHandler(filename = function() {
+      paste0(input$imageFileName, ".png")
+    },
                                                   content = function(file) {
                                                     png(file, input$imageWidth * 300, input$imageHeight * 300)
                                                     plotHca(vals$hca)

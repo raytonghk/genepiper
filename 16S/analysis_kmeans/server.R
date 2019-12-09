@@ -224,7 +224,9 @@ shinyServer(
     
     observeEvent(input$downloadDialogButton, showModal(downloadImageDialog()))
     
-    output$imageDownloadButton <- downloadHandler(paste0(input$imageFileName, ".png"),
+    output$imageDownloadButton <- downloadHandler(filename = function() {
+      paste0(input$imageFileName, ".png")
+    },
                                                   content = function(file) {
                                                     ggsave(file, vals$formatedGg, "png", height = input$imageHeight, width = input$imageWidth)
                                                     removeModal()
@@ -295,7 +297,9 @@ shinyServer(
     
     observeEvent(input$downloadCHIndexDialogButton, showModal(downloadImageDialog("CH")))
     
-    output$imageDownloadButtonCH <- downloadHandler(paste0(input$imageFileNameCH, ".png"),
+    output$imageDownloadButtonCH <- downloadHandler(filename = function() {
+      paste0(input$imageFileNameCH, ".png")
+    },
                                                     content = function(file) {
                                                       ggsave(file, vals$cHIndexPlot, "png", height = input$imageHeightCH, width = input$imageWidthCH)
                                                       removeModal()
