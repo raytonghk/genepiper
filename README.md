@@ -43,6 +43,14 @@ Biom sample file `rich_dense_otu_table.biom` is also provided.
 
 For detailed walkthrough of each module, please refer to our [Wiki](https://github.com/raytonghk/genepiper/wiki/01.-Introduction) page.
 
+### Future updates:
+* Import module that support QIIME2 files (in progress)
+* Area-proportional venn diagram (maybe?)
+* Differential abundances by DeSeq2 (maybe?)
+* Animated graphics: taxonomic bar-charts and ordinations (maybe?)
+* Expansion to support raw sequence processing (maybe?)
+
+
 ### Citation:
 
 Please cite GenePiper as follows: "Tong WM, Chan Y. 2020. GenePiper: a graphical user interface tool for microbiome sequence data mining. Microbiol Resour Announc 9:e01195-19. https://doi.org/10.1128/MRA.01195-19."
