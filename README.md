@@ -44,7 +44,7 @@ Biom sample file `rich_dense_otu_table.biom` is also provided.
 For detailed walkthrough of each module, please refer to our [Wiki](https://github.com/raytonghk/genepiper/wiki/01.-Introduction) page.
 
 ### Future updates:
-* Import module that support QIIME2 files (in progress)
+* New import module that supports QIIME2 files (in progress)
 * Area-proportional venn diagram (maybe?)
 * Differential abundances by DeSeq2 (maybe?)
 * Animated graphics: taxonomic bar-charts and ordinations (maybe?)
