@@ -35,9 +35,10 @@ shinyServer(
                    vals$modifiedPhyloseq <- NULL
                    vals$plotMessage <- NULL
                    vals$plotTable <- NULL
+                   req(vals$filteredPhyloseq, input$taxRank, input$abundanceType)
                    tryCatch(
                      {
-                       req(vals$filteredPhyloseq, input$taxRank, input$abundanceType)
+                       
                        vals$modifiedPhyloseq <- agglomerateTaxa(vals$filteredPhyloseq, input$taxRank) %>%
                          transformCount(input$abundanceType)
                        vals$plotTable <- getPlotTable()
@@ -124,13 +125,14 @@ shinyServer(
     ### Result
     ## Output Tab
     output$kMeansOutput <- renderPrint(vals$kMeans)
-    
+
     observe({
       vals$kMeansMessage <- NULL
       vals$kMeans <- NULL
+      req(vals$plotTable, input$plotAxis, input$kMeansType, input$k)
+      req(all(input$plotAxis %in% colnames(vals$plotTable)))
       tryCatch(
         {
-          req(vals$plotTable, input$plotAxis, input$kMeansType, input$k)
           vals$kMeans <- getKMeans(input$kMeansType, input$k)
         },
         error = function(e) {
@@ -138,19 +140,19 @@ shinyServer(
         }
       )
     })
-    
+
     getKMeans <- function(type, k) {
       table <- vals$plotTable[, input$plotAxis] %>%
         as.matrix()
       switch(type,
              km = kmeans(table, centers = k, algorithm = input$kMeansAlgorithm),
              kkm = kernlab::kkmeans(table, centers = k, kernel = input$kernel),
-             sc = kernlab::specc(table, centers = k, kernel = input$kernel) 
+             sc = kernlab::specc(table, centers = k, kernel = input$kernel)
       )
     }
-    
+
     output$kMeansMessage <- renderText(HTML(vals$kMeansMessage))
-    
+
     output$donwloadKMeans <- downloadHandler("kmeans.rds", function(file) saveRDS(vals$kMeans, file))
     
     ## Plot Tab
@@ -168,7 +170,7 @@ shinyServer(
       req(vals$plotTable, vals$kMeans)
       vals$gg <- plotKMeans()
     })
-    
+
     plotKMeans <- function() {
       plotTable <- rownames_to_column(vals$plotTable, "Sample") %>%
         addKMeansClusterToPlotTable(vals$kMeans)
@@ -187,12 +189,12 @@ shinyServer(
       }
       gg
     }
-    
+
     addKMeansClusterToPlotTable <- function(plotTable, kmeans) {
       cluster <- kMeansCluster(kmeans)
       mutate(plotTable, Cluster = factor(cluster))
     }
-    
+
     kMeansCluster <- function(kmeans) {
       if(input$kMeansType != "km") {
         kmeans@`.Data`
@@ -200,13 +202,13 @@ shinyServer(
         kmeans$cluster
       }
     }
-    
+
     plotKmeansCenter <- function(gg, kmeans) {
       centerTable <- kmeansCenterTable(kmeans)
       gg +
         geom_point(aes(x = x, y = y), size = input$centerDotSize, color = "black", shape = 3, data = centerTable)
     }
-    
+
     kmeansCenterTable <- function(kmeans) {
       if(input$kMeansType == "km") {
         kmeans$centers %>%
@@ -218,12 +220,12 @@ shinyServer(
           `colnames<-`(c("x", "y"))
       }
     }
-    
+
     # downloadDialogButton
     source("../dialog_download.R", local = TRUE)
-    
+
     observeEvent(input$downloadDialogButton, showModal(downloadImageDialog()))
-    
+
     output$imageDownloadButton <- downloadHandler(filename = function() {
       paste0(input$imageFileName, ".png")
     },
@@ -232,13 +234,13 @@ shinyServer(
                                                     removeModal()
                                                   }
     )
-    
+
     ## Comparison Tab
     observe({
       req(vals$modifiedPhyloseq)
       updateSelectInput(session, "groupColumnToCompare", choices = characterVariableNames(vals$modifiedPhyloseq))
     })
-    
+
     output$compareOutput <- renderPrint(
       {
         req(input$groupColumnToCompare, vals$adjustedRandIndex)
@@ -246,41 +248,42 @@ shinyServer(
         cat("Adjusted Rand Index:", vals$adjustedRandIndex, "\n\n")
       }
     )
-    
+
     observe({
       vals$adjustedRandIndex
       req(vals$kMeans, input$groupColumnToCompare)
       vals$adjustedRandIndex <- mclust::adjustedRandIndex(kMeansCluster(vals$kMeans), groupFactor(vals$modifiedPhyloseq, input$groupColumnToCompare, FALSE))
     })
-    
+
     ## Calinski-Harabasz Index Tab
     observe({
       hideTab("resultTabset", "Calinski-Harabasz Index (K-Means Only)")
       req(input$kMeansType == "km")
       showTab("resultTabset", "Calinski-Harabasz Index (K-Means Only)")
     })
-    
+
     output$cHIndexPlot <- renderPlot(print(vals$cHIndexPlot))
-    
+
     observe({
       vals$cHIndexPlot <- NULL
       req(vals$plotTable, length(input$plotAxis) == 2, input$kMeansType == "km")
       vals$cHIndexPlot <- cHIndexPlot()
     })
-    
+
     cHIndexPlot <- function() {
       cHTable <- cHTable()
       plotCHIndex(cHTable)
     }
-    
+
     cHTable <- function() {
+      req(all(input$plotAxis %in% colnames(vals$plotTable)))
       map_df(2 : min(nrow(vals$plotTable), 20), ~{
         cluster <- getKMeans(input$kMeansType, .x) %>%
           kMeansCluster()
         data.frame(k = .x, chIndex = fpc::calinhara(vals$plotTable[, input$plotAxis], cluster))
       })
     }
-    
+
     plotCHIndex <- function(cHTable) {
       ggplot(cHTable, aes(x = k, y = chIndex)) +
         geom_line(size = input$lineSizeCh) +
@@ -294,9 +297,9 @@ shinyServer(
                                          angle = input$yAxisTextAngleCh),
               axis.title.y = element_text(size = input$yAxisTextSizeCh + 1))
     }
-    
+
     observeEvent(input$downloadCHIndexDialogButton, showModal(downloadImageDialog("CH")))
-    
+
     output$imageDownloadButtonCH <- downloadHandler(filename = function() {
       paste0(input$imageFileNameCH, ".png")
     },
