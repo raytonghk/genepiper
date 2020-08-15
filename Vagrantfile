@@ -70,8 +70,6 @@ $script = <<BOOTSTRAP
 
   sudo chmod -R 777 /srv/shiny-server
   
-  reboot
-  
 BOOTSTRAP
   
   #config.vm.provision :shell, :inline => $script
@@ -95,7 +93,6 @@ $fix2 = <<BOOTSTRAP
   sudo usermod -g root vagrant
   sudo usermod -aG vagrant,vboxsf vagrant
   ln -s /media /srv/shiny-server/extdata
-  reboot
 BOOTSTRAP
 
   config.vm.provision "fix2", run: "never", type: "shell" do |fix2|
