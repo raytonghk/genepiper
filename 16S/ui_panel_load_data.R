@@ -19,3 +19,13 @@ uiPanelLoadData <- function() {
     verbatimTextOutput("dataDetails")
   )
 }
+
+
+
+
+
+
+
+
+
+

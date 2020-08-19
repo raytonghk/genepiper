@@ -63,16 +63,13 @@ $script = <<BOOTSTRAP
   git clone https://github.com/raytonghk/genepiper.git /srv/shiny-server/genepiper
   sudo mv /srv/shiny-server/genepiper/* /srv/shiny-server
   sudo rm -rf /srv/shiny-server/genepiper
+  
+  sudo usermod -g root vagrant
+  sudo usermod -aG vagrant,vboxsf vagrant
+  ln -s /media /srv/shiny-server/extdata
 
   sudo chmod -R 777 /srv/shiny-server
   
-BOOTSTRAP
-
-$fix = <<BOOTSTRAP
-  sudo chmod -R 777 /srv/shiny-server
-  git clone https://github.com/raytonghk/genepiper.git /srv/shiny-server/genepiper
-  sudo cp -R /srv/shiny-server/genepiper/* /srv/shiny-server/
-  sudo rm -rf /srv/shiny-server/genepiper
 BOOTSTRAP
   
   #config.vm.provision :shell, :inline => $script
@@ -81,7 +78,36 @@ BOOTSTRAP
     setup.inline = $script
   end
   
+$fix = <<BOOTSTRAP
+  sudo chmod -R 777 /srv/shiny-server
+  git clone https://github.com/raytonghk/genepiper.git /srv/shiny-server/genepiper
+  sudo cp -R /srv/shiny-server/genepiper/* /srv/shiny-server/
+  sudo rm -rf /srv/shiny-server/genepiper
+BOOTSTRAP
+
   config.vm.provision "fix", run: "never", type: "shell" do |fix|
     fix.inline = $fix
   end
+  
+$fix2 = <<BOOTSTRAP
+  sudo usermod -g root vagrant
+  sudo usermod -aG vagrant,vboxsf vagrant
+  ln -s /media /srv/shiny-server/extdata
+BOOTSTRAP
+
+  config.vm.provision "fix2", run: "never", type: "shell" do |fix2|
+    fix2.inline = $fix2
+  end
+  
+  
 end
+
+
+
+
+
+
+
+
+
+

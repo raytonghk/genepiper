@@ -115,6 +115,13 @@
           document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
           "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/helper_build_ml_tree/')\">Build ML Tree</a>";
         }
+        if (e.data == 'helper_dada2_pipeline') {
+          document.getElementById('iframe').src = "./16S/helper_dada2_pipeline/";
+        }
+        if (e.data == 'helperDada2PipelineLoaded') {
+          document.getElementById('nav_title').innerHTML = "<a href='#' onclick=\" gotoPage('./16S/content_16S.html')\">16S</a>" +
+          "&nbsp > &nbsp" + "<a href='#' onclick=\"gotoPage('./16S/helper_dada2_pipeline/')\">DADA2 Pipeline</a>";
+        }
         if (e.data == 'analysis_alpha_diversity') {
           document.getElementById('iframe').src = "./16S/analysis_alpha_diversity/";
         }
