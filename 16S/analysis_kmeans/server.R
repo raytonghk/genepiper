@@ -274,7 +274,7 @@ shinyServer(
     }
     
     cHTable <- function() {
-      map_df(2 : min(nrow(vals$plotTable), 20), ~{
+      map_df(2 : min(nrow(vals$plotTable) - 1, 20), ~{
         cluster <- getKMeans(input$kMeansType, .x) %>%
           kMeansCluster()
         data.frame(k = .x, chIndex = fpc::calinhara(vals$plotTable[, input$plotAxis], cluster))
