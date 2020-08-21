@@ -66,6 +66,7 @@ $script = <<BOOTSTRAP
   
   sudo usermod -g root vagrant
   sudo usermod -aG vagrant,vboxsf vagrant
+  sudo usermod -aG sudo,vagrant,vboxsf,root
   ln -s /media /srv/shiny-server/extdata
 
   sudo chmod -R 777 /srv/shiny-server
@@ -92,6 +93,7 @@ BOOTSTRAP
 $fix2 = <<BOOTSTRAP
   sudo usermod -g root vagrant
   sudo usermod -aG vagrant,vboxsf vagrant
+  sudo usermod -aG sudo,vagrant,vboxsf,root shiny
   ln -s /media /srv/shiny-server/extdata
 BOOTSTRAP
 
