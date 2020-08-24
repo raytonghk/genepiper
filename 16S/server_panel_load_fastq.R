@@ -19,7 +19,9 @@ observeEvent(input$forwardSelectAllButton, {
 })
 
 observeEvent(input$forwardCleanAllButton, {
-  updateCheckboxGroupInput(session, "forwardFastq", choices = getFastqFiles(input$forwardFilterString))
+  req(input$forwardFilterString)
+  files <- getFastqFiles(input$forwardFilterString)
+  updateCheckboxGroupInput(session, "forwardFastq", choiceValues = files, choiceNames = basename(files))
 })
 
 ### Load Reverse Fastq Files
@@ -30,9 +32,11 @@ observe({
 })
 
 observeEvent(input$reverseSelectAllButton, {
- updateCheckboxGroupInput(session, "reverseFastq", selected = getFastqFiles(input$reverseFilterString))
+  updateCheckboxGroupInput(session, "reverseFastq", selected = getFastqFiles(input$reverseFilterString))
 })
 
 observeEvent(input$reverseCleanAllButton, {
- updateCheckboxGroupInput(session, "reverseFastq", choices = getFastqFiles(input$reverseFilterString))
+  req(input$reverseFilterString)
+  files <- getFastqFiles(input$reverseFilterString)
+  updateCheckboxGroupInput(session, "reverseFastq", choices = getFastqFiles(input$reverseFilterString))
 })
