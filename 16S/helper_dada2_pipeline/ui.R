@@ -29,6 +29,17 @@ shinyUI(
       column(
         width = 4,
         uiPanelLoadPairedFastq()
+      ),
+      
+      column(
+        width = 8,
+        wellPanel(
+          class = "middle-column",
+          h4("Pipeline:"),
+          tabsetPanel(
+            id = "tabsetPipeline"
+          )
+        )
       )
     )
   )

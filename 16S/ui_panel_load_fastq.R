@@ -37,6 +37,7 @@ uiPanelLoadPairedFastq <- function() {
         h4("Load Reverse Fastq Files"),
         textInput("reverseFilterString", "Filter Pattern", ".fastq"),
         checkboxGroupInput("reverseFastq", "Files:"),
+        errorOutput("reverseFastqMessage"),
         actionButton("reverseSelectAllButton", "Select All"),
         actionButton("reverseCleanAllButton", "Clean All"),
         tags$div(

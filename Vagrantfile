@@ -48,6 +48,7 @@ $script = <<BOOTSTRAP
   sudo R -e "install.packages('bsplus', repos = 'http://cran.rstudio.com/', dep = TRUE)"
   sudo R -e "install.packages('MathJax', repos = 'http://cran.rstudio.com/', dep = TRUE)"
   sudo R -e "install.packages('ggsignif', repos = 'http://cran.rstudio.com/', dep = TRUE)"
+  sudo R -e "BiocManager::install('dada2')"
 
   sudo apt-get -y install gdebi-core
       # Install the latest SSO build
@@ -91,6 +92,7 @@ BOOTSTRAP
   end
   
 $fix2 = <<BOOTSTRAP
+  sudo R -e "BiocManager::install('dada2')"
   sudo usermod -g root vagrant
   sudo usermod -aG vagrant,vboxsf vagrant
   sudo usermod -aG sudo,vagrant,vboxsf,root shiny
