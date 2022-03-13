@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "ubuntu/trusty64"
-  config.vm.box_url = "https://vagrantcloud.com/ubuntu/trusty64"
+  config.vm.box = "ubuntu/focal64"
+  config.vm.box_url = "https://vagrantcloud.com/ubuntu/focal64"
 
   config.vm.network "forwarded_port", guest: 3838, host: 4002
 
@@ -16,7 +16,7 @@ $script = <<BOOTSTRAP
   export LC_ALL=en_US.UTF-8
   locale-gen en_US.UTF-8
   sudo dpkg-reconfigure locales 
-  sudo echo "deb https://cloud.r-project.org/bin/linux/ubuntu trusty-cran35/" >> /etc/apt/sources.list
+  sudo echo "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/" >> /etc/apt/sources.list
   sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
   sudo apt-get update
   sudo apt-get -y install r-base r-base-dev
